@@ -8,13 +8,11 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.game.client.SfxHandler;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.SpriteData;
-import net.mostlyoriginal.game.system.map.MapSystem;
 import net.mostlyoriginal.game.system.render.SpriteLibrary;
 
 import static net.mostlyoriginal.game.component.G.DEBUG_NO_MUSIC;
@@ -30,38 +28,20 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
     public static final int TILE_SIZE = 32;
     public static final int SMALL_TILE_SIZE = 16;
     public static final int GIANT_TILE_SIZE = 48;
-    private MapSystem mapSystem;
 
     public GameScreenAssetSystem() {
         super("tileset.png");
         loadSprites();
         loadSounds(
                 new String[]{
-                        //"ann_breakdown_1",
-                        //"ann_go_1",
-                        //"ann_go_2",
-                        //"ann_go_3",
-                        //"ann_triple_1",
-                        //"carsound_accel_1",
-                        //"carsound_accel_2",
-                        //"carsound_carpass_1",
-                        //"carsound_carpass_2",
-                        //"carsound_carpass_3",
                         "carsound_oilskid_1",
                         "carsound_skid_2",
                         "countdown_3",
-                        //"crash",
                         "crash_1",
                         "crash_2",
                         "FAIL",
                         "hook",
-                        //"frog_bleh_1",
                         "frog_godwhy",
-                        //"frog_mylegs_1",
-                        //"frog_mylegs_2",
-                        //"misc_1",
-                        //"misc_2",
-                        //"misc_3",
                         "pop_1", // used
                         "pop_2", // used
                         "rewardsound_1", // used
@@ -127,9 +107,6 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
     @Override
     protected void initialize() {
         super.initialize();
-        if (!G.DEBUG_SKIP_MUSIC) {
-           playMusicInGame( mapSystem.properties.get("music", "wrecklessblues.mp3", String.class));
-        }
     }
 
     private void loadSprites() {

@@ -1,9 +1,10 @@
 package net.mostlyoriginal.game.system.view;
 
-import com.artemis.Entity;
+import com.artemis.E;
 import com.artemis.annotations.Wire;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
-import net.mostlyoriginal.game.util.Anims;
+import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
 import static com.artemis.E.E;
 
@@ -14,11 +15,45 @@ import static com.artemis.E.E;
 public class GameScreenSetupSystem extends PassiveSystem {
 
     GameScreenAssetSystem assetSystem;
+    GridUpdateSystem gridUpdateSystem;
 
     @Override
     protected void initialize() {
-
+        spawnMouse();
+        spawnMap();
     }
 
+    private void spawnMouse() {
+        E()
+                .mouseCursor()
+                .pos()
+                .bounds(0,0,1,1)
+                .tag("cursor");
+    }
 
+    private void spawnMap() {
+        int width = 8;
+        int height = 8;
+
+        gridUpdateSystem.init(width,height);
+        for (int gridX = 0; gridX < width; gridX++) {
+            for (int gridY = 0; gridY < height; gridY++) {
+                spawnCell(gridX,gridY);
+            }
+        }
+    }
+
+    private void spawnCell(int gridX, int gridY) {
+
+
+        E e = E()
+                .tile(gridX, gridY)
+                .anim(MathUtils.randomBoolean() ? "car-GREEN" : MathUtils.randomBoolean() ? "car-BLUE" : "car-RED")
+                .renderLayer(1)
+                .bounds()
+                .pos(gridX * 16, gridY * 16)
+                .clickable();
+
+        assetSystem.boundToAnim(e.id(),0,0);
+    }
 }

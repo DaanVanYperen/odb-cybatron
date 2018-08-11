@@ -1,10 +1,7 @@
-odb-wreckless
+odb-cybatron
 =====================
 
 #### Summary
-Color matching game mixed with cart racing!
-
-[Play it online!](https://ldjam.com/events/ludum-dare/41/wreckless-rally)
 
 #### Technology
 Jam game made with [LibGDX](https://github.com/libgdx/libgdx) and [Artemis-ODB](https://github.com/junkdog/artemis-odb). Tested for desktop and html5 via gwt.
