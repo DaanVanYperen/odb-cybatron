@@ -427,5 +427,65 @@
       "width": 128,
       "height": 64,
     },
+    {
+      "id": "UI-destroy",
+      "comment": "UI destroy block",
+      "x": 640,
+      "y": 856,
+      "countX": 3,
+      "countY": 1,
+      "width": 128,
+      "height": 112,
+      "milliseconds": 500,
+      "repeat": true
+    },
+    {
+      "id": "UI-arrow-topright",
+      "comment": "UI arrow pointing top right",
+      "x": 640,
+      "y": 792,
+      "countX": 3,
+      "countY": 1,
+      "width": 128,
+      "height": 64,
+      "milliseconds": 500,
+      "repeat": true
+    },
+    {
+      "id": "UI-arrow-topleft",
+      "comment": "UI arrow pointing top left",
+      "x": 640,
+      "y": 728,
+      "countX": 3,
+      "countY": 1,
+      "width": 128,
+      "height": 64,
+      "milliseconds": 500,
+      "repeat": true
+    },
+    {
+      "id": "UI-arrow-bottomleft",
+      "comment": "UI arrow pointing bottom left",
+      "x": 640,
+      "y": 664,
+      "countX": 3,
+      "countY": 1,
+      "width": 128,
+      "height": 64,
+      "milliseconds": 500,
+      "repeat": true
+    },
+    {
+      "id": "UI-arrow-bottomright",
+      "comment": "UI arrow pointing bottom right",
+      "x": 640,
+      "y": 600,
+      "countX": 3,
+      "countY": 1,
+      "width": 128,
+      "height": 64,
+      "milliseconds": 500,
+      "repeat": true
+    },
   ]
 }
