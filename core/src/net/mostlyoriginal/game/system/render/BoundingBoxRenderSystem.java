@@ -10,6 +10,7 @@ import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -49,6 +50,7 @@ public class BoundingBoxRenderSystem extends DeferredEntityProcessingSystem {
     private Color DEFAULT_BOUNDINGBOX= new Color(0f,1f,0f,0.5f);
 
     boolean isEnabled = false;
+    private TextureRegion boundingBox;
 
     public BoundingBoxRenderSystem(EntityProcessPrincipal principal) {
         super(Aspect.all(Pos.class, Anim.class, Render.class).exclude(Invisible.class), principal);
@@ -57,17 +59,17 @@ public class BoundingBoxRenderSystem extends DeferredEntityProcessingSystem {
     @Override
     protected void initialize() {
         super.initialize();
-        batch = new SpriteBatch(2000);
+        batch = new SpriteBatch(200);
+        boundingBox = new TextureRegion(new Texture("boundingbox.png"));
     }
 
     @Override
     protected void begin() {
         batch.setProjectionMatrix(cameraSystem.camera.combined);
+        batch.setColor(1f,1f,1f,0.5f);
         batch.begin();
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.F1)) {
-            isEnabled = !isEnabled;
-        }
+            isEnabled = Gdx.input.isKeyPressed(Input.Keys.F1);
     }
 
     @Override
@@ -85,10 +87,8 @@ public class BoundingBoxRenderSystem extends DeferredEntityProcessingSystem {
         final float scale = mScale.getSafe(e, Scale.DEFAULT).scale;
         final Origin origin = mOrigin.getSafe(e, DEFAULT_ORIGIN);
 
-        batch.setColor(DEFAULT_BOUNDINGBOX);
-
         if ( bounds != null ) {
-            drawAnimation(anim, angle, origin, pos, "boundingbox",scale, bounds);
+            drawAnimation(anim, angle, origin, pos, boundingBox,scale, bounds);
         }
 
         anim.age += world.delta * anim.speed;
@@ -107,15 +107,10 @@ public class BoundingBoxRenderSystem extends DeferredEntityProcessingSystem {
         e.priorityAnimAge(0);
     }
 
-    private void drawAnimation(final Anim animation, final Angle angle, final Origin origin, final Pos position, String id, float scale, Bounds bounds) {
+    private void drawAnimation(final Anim animation, final Angle angle, final Origin origin, final Pos position, TextureRegion frame, float scale, Bounds bounds) {
 
         // don't support backwards yet.
         if ( animation.age < 0 ) return;
-
-        final Animation<TextureRegion> gdxanim = (Animation<TextureRegion>) abstractAssetSystem.get(id);
-        if ( gdxanim == null) return;
-
-        final TextureRegion frame = gdxanim.getKeyFrame(animation.age, animation.loop);
 
         float ox = frame.getRegionWidth() * scale * origin.xy.x;
         float oy = frame.getRegionHeight() * scale * origin.xy.y;

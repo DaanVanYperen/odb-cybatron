@@ -66,8 +66,8 @@ public class GameScreen extends WorldScreen {
                         new GridUpdateSystem(),
 
                         renderBatchingSystem = new RenderBatchingSystem(),
-                        new MyAnimRenderSystem(renderBatchingSystem)
-                        //new BoundingBoxRenderSystem(renderBatchingSystem)
+                        new MyAnimRenderSystem(renderBatchingSystem),
+                        new BoundingBoxRenderSystem(renderBatchingSystem)
                         //new MyLabelRenderSystem(renderBatchingSystem),
                         //new AdditiveRenderSystem()
 

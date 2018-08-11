@@ -5,7 +5,6 @@ import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Json;
@@ -13,6 +12,7 @@ import net.mostlyoriginal.api.manager.AbstractAssetSystem;
 import net.mostlyoriginal.game.client.SfxHandler;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.SpriteData;
+import net.mostlyoriginal.game.system.detection.FauxPixMap;
 import net.mostlyoriginal.game.system.render.SpriteLibrary;
 
 import static net.mostlyoriginal.game.component.G.DEBUG_NO_MUSIC;
@@ -28,6 +28,7 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
     public static final int TILE_SIZE = 32;
     public static final int SMALL_TILE_SIZE = 16;
     public static final int GIANT_TILE_SIZE = 48;
+    public final FauxPixMap pixMap;
 
     public GameScreenAssetSystem() {
         super("tileset.png");
@@ -61,7 +62,7 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
                 }
         );
 
-        Texture tiles = new Texture("tileset.png");
+        pixMap = new FauxPixMap("tileset.png");
 
         //playMusicTitle();
         G.sfx = new SfxHandler() {

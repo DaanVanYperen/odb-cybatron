@@ -28,6 +28,8 @@ public class MouseClickSystem extends FluidIteratingSystem {
     private PixelCollisionService pixelCollisionService;
     private boolean leftMousePressedLastFrame = false;
     private boolean leftMousePressedJustNow = false;
+    private E topMostOverlapping;
+    private int topMostOverlappingLayer;
 
     public MouseClickSystem() {
         super(Aspect.all(Clickable.class, Bounds.class));
@@ -39,6 +41,20 @@ public class MouseClickSystem extends FluidIteratingSystem {
         leftMousePressedLastFrame = leftMousePressed;
         leftMousePressed = Gdx.input.isButtonPressed(Input.Buttons.LEFT);
         leftMousePressedJustNow = leftMousePressed && !leftMousePressedLastFrame;
+
+        topMostOverlappingLayer = Integer.MIN_VALUE;
+        topMostOverlapping = null;
+    }
+
+    @Override
+    protected void end() {
+        super.end();
+
+        if (topMostOverlapping != null) {
+            topMostOverlapping.hovered(true);
+            topMostOverlapping.clicked(leftMousePressedJustNow);
+            topMostOverlapping.clickableState(leftMousePressedJustNow ? Clickable.ClickState.CLICKED : Clickable.ClickState.HOVER);
+        }
     }
 
     @Override
@@ -49,14 +65,15 @@ public class MouseClickSystem extends FluidIteratingSystem {
             final Clickable clickable = e.getClickable();
             final boolean overlapping = system.overlaps(cursor, e.entity()) && pixelCollisionService.collides(E.E(cursor), e);
             if (overlapping) {
-                e.hovered(true);
-                e.clicked(leftMousePressedJustNow);
-                clickable.state = leftMousePressedJustNow ? Clickable.ClickState.CLICKED : Clickable.ClickState.HOVER;
-            } else {
-                e.hovered(false);
-                e.clicked(false);
-                clickable.state = Clickable.ClickState.NONE;
+                if (topMostOverlappingLayer < e.renderLayer()) {
+                    topMostOverlapping = e;
+                    topMostOverlappingLayer = e.renderLayer();
+                }
             }
+
+            e.hovered(false);
+            e.clicked(false);
+            clickable.state = Clickable.ClickState.NONE;
         }
     }
 }

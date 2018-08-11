@@ -27,7 +27,9 @@ public class GameScreenSetupSystem extends PassiveSystem {
         E()
                 .mouseCursor()
                 .pos()
-                .bounds(0,0,1,1)
+//                .anim("soil")
+//                .renderLayer(10000)
+                .bounds(0,0,0,0)
                 .tag("cursor");
     }
 
@@ -48,12 +50,12 @@ public class GameScreenSetupSystem extends PassiveSystem {
 
         E e = E()
                 .tile(gridX, gridY)
-                .anim(MathUtils.randomBoolean() ? "car-GREEN" : MathUtils.randomBoolean() ? "car-BLUE" : "car-RED")
+                .anim(MathUtils.randomBoolean() ? "soil" : MathUtils.randomBoolean() ? "water" : "building")
                 .renderLayer(1)
                 .bounds()
-                .pos(gridX * 16, gridY * 16)
+                .pos()
                 .clickable();
 
-        assetSystem.boundToAnim(e.id(),0,0);
+        assetSystem.boundToAnim(e.id(),0, 0);
     }
 }

@@ -3,6 +3,7 @@ package net.mostlyoriginal.game.system.map;
 import com.artemis.Aspect;
 import com.artemis.BaseSystem;
 import com.artemis.E;
+import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.component.ui.Clicked;
 import net.mostlyoriginal.game.component.ui.Explodable;
@@ -18,6 +19,8 @@ public class GridInteractSystem extends FluidIteratingSystem {
     boolean hasActed = false;
 
     GridUpdateSystem gridUpdateSystem;
+    RenderBatchingSystem renderBatchingSystem;
+
 
     public GridInteractSystem() {
         super(Aspect.all(Tile.class, Clicked.class).one(Slideable.class, Explodable.class));
@@ -34,8 +37,8 @@ public class GridInteractSystem extends FluidIteratingSystem {
         if (!hasActed) {
 
             if (e.hasSlideable()) {
-
                 gridUpdateSystem.slideInwards(e.tileX(), e.tileY(),e.slideableX(), e.slideableY() );
+                renderBatchingSystem.sortedDirty=true;
                 hasActed = true;
             } else if (e.hasExplodable()) {
                 e.deleteFromWorld();

@@ -9,8 +9,8 @@ import net.mostlyoriginal.game.component.G;
  */
 public class IsometricConversionService extends BaseSystem {
 
-    private static final int ISO_X = 24;
-    private static final int ISO_Y = 24;
+    private static final int ISO_X = 64;
+    private static final int ISO_Y = 64;
 
     protected void processSystem() {
     }
@@ -20,8 +20,8 @@ public class IsometricConversionService extends BaseSystem {
         int x = e.tileX() * ISO_X;
         int y = e.tileY() * ISO_Y;
 
-        float maxMapHeight = 8 * ISO_Y*0.5f;
-        float maxMapWidth = 8 * ISO_X;
+        float maxMapHeight = 8 * ISO_Y;
+        float maxMapWidth = 8 * ISO_X * 0.4f;
 
         e.posX(isoXtoWorldSpace(x, y) + G.SCREEN_CENTER_X - maxMapWidth/2  );
         e.posY(isoYtoWorldSpace(x, y) + G.SCREEN_CENTER_Y - maxMapHeight/2 );

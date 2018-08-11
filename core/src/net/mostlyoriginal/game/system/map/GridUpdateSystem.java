@@ -57,7 +57,6 @@ public class GridUpdateSystem extends FluidIteratingSystem {
             for (int y = 0; y < height; y++) {
                 final Meta tile = get(x, y);
                 if (tile.isUnsolvedHole()) {
-                    System.out.println("Hole at " + x + " " + y);
                     tile.makeNeighboursSlidable();
                     anySlidable = true;
                 }

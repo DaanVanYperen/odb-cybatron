@@ -37,7 +37,7 @@ public class G {
 
     // 1280 x 720
 
-    public static int CAMERA_ZOOM = 2;
+    public static int CAMERA_ZOOM = 1;
     public static final int SCREEN_WIDTH = 1280;
     public static final int SCREEN_HEIGHT = 720;
     public static final float SCREEN_CENTER_X = (G.SCREEN_WIDTH / CAMERA_ZOOM) / 2;
