@@ -407,5 +407,15 @@
       "width": 128,
       "height": 144,
     },
+    {
+      "id": "mountain",
+      "comment": "Basic mountain block",
+      "x": 256,
+      "y": 864,
+      "countX": 1,
+      "countY": 1,
+      "width": 128,
+      "height": 160,
+    },
   ]
 }
