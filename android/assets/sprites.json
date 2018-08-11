@@ -405,7 +405,7 @@
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height": 144,
+      "height": 80,
     },
     {
       "id": "mountain",
@@ -416,6 +416,16 @@
       "countY": 1,
       "width": 128,
       "height": 160,
+    },
+    {
+      "id": "farm",
+      "comment": "Basic farm block",
+      "x": 512,
+      "y": 896,
+      "countX": 1,
+      "countY": 1,
+      "width": 128,
+      "height": 64,
     },
   ]
 }
