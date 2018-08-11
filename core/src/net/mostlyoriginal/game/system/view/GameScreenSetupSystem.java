@@ -2,8 +2,12 @@ package net.mostlyoriginal.game.system.view;
 
 import com.artemis.E;
 import com.artemis.annotations.Wire;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
+import net.mostlyoriginal.game.component.LevelData;
+import net.mostlyoriginal.game.component.TileType;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
 import static com.artemis.E.E;
@@ -20,7 +24,20 @@ public class GameScreenSetupSystem extends PassiveSystem {
     @Override
     protected void initialize() {
         spawnMouse();
-        spawnMap();
+        spawnMap("map/level1.json");
+
+//        LevelData object = new LevelData();
+//        object.width=3;
+//        object.height=3;
+//        object.action =
+//                new char[][]{
+//                        {'~', '~', '~'},
+//                        {'T', '-', 'F'},
+//                        {'~', '~', '~'}
+//                };
+//        Json json = new Json();
+//        json.setOutputType(JsonWriter.OutputType.json);
+//        System.out.println(json.toJson(object));
     }
 
     private void spawnMouse() {
@@ -29,33 +46,36 @@ public class GameScreenSetupSystem extends PassiveSystem {
                 .pos()
 //                .anim("soil")
 //                .renderLayer(10000)
-                .bounds(0,0,0,0)
+                .bounds(0, 0, 0, 0)
                 .tag("cursor");
     }
 
-    private void spawnMap() {
-        int width = 8;
-        int height = 8;
+    private void spawnMap(String mapFile) {
 
-        gridUpdateSystem.init(width,height);
+        Json json = new Json();
+        LevelData levelData = json.fromJson(LevelData.class, Gdx.files.internal(mapFile));
+
+        int width = levelData.width;
+        int height = levelData.height;
+
+        gridUpdateSystem.init(width, height);
         for (int gridX = 0; gridX < width; gridX++) {
             for (int gridY = 0; gridY < height; gridY++) {
-                spawnCell(gridX,gridY);
+                final TileType type = TileType.byCharacter(levelData.map[gridY][gridX]);
+                spawnCell(gridX, gridY, type);
             }
         }
     }
 
-    private void spawnCell(int gridX, int gridY) {
-
+    private void spawnCell(int gridX, int gridY, TileType type) {
 
         E e = E()
                 .tile(gridX, gridY)
-                .anim(MathUtils.randomBoolean() ? "soil" : MathUtils.randomBoolean() ? "water" : "building")
+                .tileType(type)
+                .anim()
                 .renderLayer(1)
                 .bounds()
                 .pos()
                 .clickable();
-
-        assetSystem.boundToAnim(e.id(),0, 0);
     }
 }

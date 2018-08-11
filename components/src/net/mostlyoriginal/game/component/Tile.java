@@ -9,6 +9,7 @@ import com.artemis.annotations.EntityId;
 public class Tile extends Component {
     public int x;
     public int y;
+    public TileType type;
 
     public void set(int x, int y) {
         this.x = x;

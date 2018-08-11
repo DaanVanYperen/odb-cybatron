@@ -5,6 +5,7 @@ import com.artemis.E;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
  * @author Daan van Yperen
@@ -18,6 +19,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
     private Meta EMPTY = new Meta(-999, -999);
 
     IsometricConversionService isometricConversionService;
+    private GameScreenAssetSystem assetSystem;
 
     public GridUpdateSystem() {
         super(Aspect.all(Tile.class));
@@ -78,6 +80,13 @@ public class GridUpdateSystem extends FluidIteratingSystem {
         e
                 .removeSlideable()
                 .removeExplodable();
+
+        String targetAnim = e.tileType().sprite;
+        if ( e.animId() == null || !e.animId().equals(targetAnim)) {
+            e.animId(targetAnim);
+            assetSystem.boundToAnim(e.id(), 0, 0);
+        }
+
         map[e.tileY()][e.tileX()].e = e;
         isometricConversionService.applyIsoToWorldSpace(e);
     }
