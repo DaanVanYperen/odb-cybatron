@@ -1,24 +1,23 @@
 package net.mostlyoriginal.game.component;
 
-import java.io.Serializable;
-import java.util.HashMap;
-
 /**
  * @author Daan van Yperen
  */
 public enum TileType {
-    TOWER('T',"building"),
-    WATER('~',"water"),
-    SOIL('-',"soil"),
-    FARM('F',"mountain"),
-    MOUNTAIN('M',"mountain");
+    TOWER('T',"soil","building"),
+    WATER('~',"water",null),
+    SOIL('-',"soil",null),
+    FARM('F',"soil","farm"),
+    MOUNTAIN('M',"soil","mountain");
 
     public final char character;
     public final String sprite;
+    public final String decorationSprite;
 
-    TileType(char character, String sprite) {
+    TileType(char character, String sprite, String decorationSprite) {
        this.character = character;
        this.sprite = sprite;
+       this.decorationSprite = decorationSprite;
     }
 
     public static TileType byCharacter( char character ) {

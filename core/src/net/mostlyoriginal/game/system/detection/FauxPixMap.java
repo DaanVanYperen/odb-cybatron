@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import net.mostlyoriginal.game.util.FloatUtils;
 
 /**
  * @author Daan van Yperen
@@ -46,10 +47,7 @@ public class FauxPixMap {
         float b2 = ((intColor & 0x0000ff00) >>> 8) / 255f;
         float a2 = ((intColor & 0x000000ff)) / 255f;
 
-        return near(r2, r, MAX_DEVIATION) && near(g2, g, MAX_DEVIATION) && near(b2, b, MAX_DEVIATION);
+        return FloatUtils.near(r2, r, MAX_DEVIATION) && FloatUtils.near(g2, g, MAX_DEVIATION) && FloatUtils.near(b2, b, MAX_DEVIATION);
     }
 
-    private static boolean near(float r2, float r, float deviation) {
-        return (r2 >= r - deviation) && (r2 <= r + deviation);
-    }
 }

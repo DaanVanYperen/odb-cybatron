@@ -3,10 +3,11 @@ package net.mostlyoriginal.game.system.view;
 import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
+import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.LevelData;
+import net.mostlyoriginal.game.component.ProductType;
 import net.mostlyoriginal.game.component.TileType;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
@@ -25,11 +26,12 @@ public class GameScreenSetupSystem extends PassiveSystem {
     protected void initialize() {
         spawnMouse();
         spawnMap("map/level1.json");
-
+//
 //        LevelData object = new LevelData();
 //        object.width=3;
 //        object.height=3;
-//        object.action =
+//        object.goals = new ResourceType[] { ResourceType.POPULATION };
+//        object.map =
 //                new char[][]{
 //                        {'~', '~', '~'},
 //                        {'T', '-', 'F'},
@@ -65,6 +67,30 @@ public class GameScreenSetupSystem extends PassiveSystem {
                 spawnCell(gridX, gridY, type);
             }
         }
+
+        spawnGoals(levelData,  G.SCREEN_CENTER_Y + height * 32f);
+    }
+
+    private void spawnGoals(LevelData levelData, float y) {
+        int goalIndex=0;
+        int goalCount = levelData.goals.length;
+        for (ProductType type : levelData.goals) {
+            spawnGoal(type,goalIndex++, goalCount, y);
+        }
+    }
+
+    private void spawnGoal(ProductType type, int goalIndex, int goalCount, float y) {
+
+        float startX = G.SCREEN_CENTER_X + -goalCount * 8 + goalIndex * 16;
+        float startY = y;
+        E()
+                .goalType(type)
+                .goalStartX(startX)
+                .goalStartY(startY)
+                .anim(type.sprite)
+                .renderLayer(1000)
+                .bounds(0,0,24,24)
+                .pos(startX, startY);
     }
 
     private void spawnCell(int gridX, int gridY, TileType type) {
@@ -77,5 +103,24 @@ public class GameScreenSetupSystem extends PassiveSystem {
                 .bounds()
                 .pos()
                 .clickable();
+
+        String targetAnim = e.tileType().sprite;
+        if ( e.animId() == null || !e.animId().equals(targetAnim)) {
+            e.animId(targetAnim);
+            assetSystem.boundToAnim(e.id(), 0, 0);
+        }
+
+        if ( type.decorationSprite != null ) {
+            spawnDecoration(e, type.decorationSprite);
+        }
+    }
+
+    private void spawnDecoration(E e, String decorationSprite) {
+        E()
+                .attachedParent(e.id())
+                .attachedYo(64)
+                .anim(decorationSprite)
+                .renderLayer(1)
+                .pos();
     }
 }

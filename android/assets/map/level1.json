@@ -1,6 +1,7 @@
 {
   "width": 3,
   "height": 3,
+  "goals":["POPULATION","POPULATION"],
   "map": [
     [ "~", "~", "~" ],
     [ "T", "-", "F" ],

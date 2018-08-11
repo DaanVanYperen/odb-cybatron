@@ -10,5 +10,7 @@ public class LevelData implements Serializable {
     public int width;
     public int height;
 
+    public ProductType goals[];
+
     public char map[][];
 }

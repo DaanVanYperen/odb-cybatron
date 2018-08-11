@@ -33,6 +33,8 @@ public class PixelCollisionService extends BaseSystem {
     /** Check if cursor is hitting one of the pixels of target entity. */
     public boolean collides(E cursor, E topic) {
 
+        if ( topic.animId() == null ) return false;
+
         final int relativeX = (int)cursor.posX() - (int)topic.posX();
         final int relativeY = (int)cursor.posY() - (int)topic.posY();
 

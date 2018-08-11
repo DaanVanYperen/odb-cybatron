@@ -2,7 +2,10 @@ package net.mostlyoriginal.game.system.map;
 
 import com.artemis.Aspect;
 import com.artemis.E;
+import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.component.Tile;
+import net.mostlyoriginal.game.component.TileType;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
@@ -13,13 +16,14 @@ import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 public class GridUpdateSystem extends FluidIteratingSystem {
 
     private Meta[][] map;
-    private int width;
-    private int height;
+    public int width;
+    public int height;
 
     private Meta EMPTY = new Meta(-999, -999);
 
     IsometricConversionService isometricConversionService;
     private GameScreenAssetSystem assetSystem;
+    private RenderBatchingSystem renderBatchingSystem;
 
     public GridUpdateSystem() {
         super(Aspect.all(Tile.class));
@@ -81,14 +85,12 @@ public class GridUpdateSystem extends FluidIteratingSystem {
                 .removeSlideable()
                 .removeExplodable();
 
-        String targetAnim = e.tileType().sprite;
-        if ( e.animId() == null || !e.animId().equals(targetAnim)) {
-            e.animId(targetAnim);
-            assetSystem.boundToAnim(e.id(), 0, 0);
-        }
-
         map[e.tileY()][e.tileX()].e = e;
-        isometricConversionService.applyIsoToWorldSpace(e);
+        isometricConversionService.applyIsoToWorldSpaceGradually(e, Duration.milliseconds(200));
+        if (e.hasScript()) {
+            e.renderLayer(-(int) (e.getPos().xy.y));
+            renderBatchingSystem.sortedDirty = true;
+        }
     }
 
     public void slideInwards(int originX, int originY, int dirX, int dirY) {
@@ -105,7 +107,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
         }
     }
 
-    private class Meta {
+    public class Meta {
         E e;
         int x;
         int y;
@@ -141,6 +143,15 @@ public class GridUpdateSystem extends FluidIteratingSystem {
 
         public boolean isUnsolvedHole() {
             return !notEmpty() && ((east().notEmpty() && west().notEmpty()) || (north().notEmpty() && south().notEmpty()));
+        }
+
+        public int neighboursOfType(TileType type) {
+            int count=0;
+            if (east().notEmpty() && east().e.tileType() == type) count++;
+            if (north().notEmpty()&& north().e.tileType() == type) count++;
+            if (west().notEmpty()&& west().e.tileType() == type)  count++;
+            if (south().notEmpty()&& south().e.tileType() == type) count++;
+            return count;
         }
 
         public void makeNeighboursSlidable() {

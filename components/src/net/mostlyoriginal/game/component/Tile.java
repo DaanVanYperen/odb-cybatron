@@ -11,6 +11,9 @@ public class Tile extends Component {
     public int y;
     public TileType type;
 
+    @EntityId
+    public int indicatorId = -1;
+
     public void set(int x, int y) {
         this.x = x;
         this.y = y;
