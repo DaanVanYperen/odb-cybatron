@@ -415,7 +415,7 @@
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height": 160,
+      "height": 96,
     },
     {
       "id": "farm",
@@ -551,7 +551,7 @@
       "id": "car-1-topright",
       "comment": "car moving to the top right",
       "x": 144,
-      "y": 10004,
+      "y": 1000,
       "countX": 1,
       "countY": 1,
       "width": 16,
