@@ -77,7 +77,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     final Meta tile = get(x, y);
-                    if (tile.notEmpty()) {
+                    if (tile.notEmpty() && !tile.e.hasFoundation()) {
                         tile.e.explodable();
                     }
                 }
@@ -160,7 +160,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
         }
 
         public boolean isUnsupported() {
-            return notEmpty() && neighbourCount() <= 1;
+            return notEmpty() && neighbourCount() <= 1 && neighboursOfType(TileType.MOUNTAIN) == 0;
         }
 
         public int neighboursOfType(TileType type) {

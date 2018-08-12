@@ -113,7 +113,7 @@ public class GameScreenSetupSystem extends BaseSystem {
         gridUpdateSystem.init(width, height);
         for (int gridX = 0; gridX < width; gridX++) {
             for (int gridY = 0; gridY < height; gridY++) {
-                final TileType type = TileType.byCharacter(levelData.map[gridY][gridX]);
+                final TileType type = TileType.byCharacter(levelData.map[height - 1 - gridY][gridX]);
                 if (type != null) {
                     spawnCell(gridX, gridY, type);
                 }
@@ -153,6 +153,10 @@ public class GameScreenSetupSystem extends BaseSystem {
                 .bounds()
                 .pos()
                 .clickable();
+
+        if ( type == TileType.MOUNTAIN  ) {
+            e.foundation();
+        }
 
         String targetAnim = e.tileType().sprite;
         if (e.animId() == null || !e.animId().equals(targetAnim)) {
