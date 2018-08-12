@@ -35,6 +35,17 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         loadSprites();
         loadSounds(
                 new String[]{
+                        "drop1",
+                        "drop2",
+                        "drop3",
+                        "drop4",
+                        "job-1",
+                        "job-2",
+                        "job-3",
+                        "job-4",
+                        "select-no",
+                        "slip-1",
+                        "slip-2"
                 }
         );
 
@@ -71,7 +82,7 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
     public void playMusicInGame(String song) {
         if (DEBUG_NO_MUSIC) return;
         if (music != null) music.stop();
-        music = Gdx.audio.newMusic(Gdx.files.internal("Music/" + song));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/" + song));
         music.setLooping(true);
         music.play();
         music.setPan(0, 0.08f);

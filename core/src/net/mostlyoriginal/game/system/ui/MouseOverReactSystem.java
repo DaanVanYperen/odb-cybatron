@@ -38,7 +38,7 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
         } else if (e.hasExplodable() && e.hasHovered()) {
             e.tint(1f, 1f, 1f, 1f);
             if (e.hasTile()) {
-                replaceIndicator(e, "UI-destroy", null,null, 0,0);
+                replaceIndicator(e, "ui-destroy-highlight-front", "ui-destroy-highlight-back",null, 0,0);
             } else {
                 removeIndicator(e);
             }

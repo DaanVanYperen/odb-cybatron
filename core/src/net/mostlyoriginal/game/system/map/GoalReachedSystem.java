@@ -4,6 +4,7 @@ import com.artemis.Aspect;
 import com.artemis.E;
 import com.artemis.EntitySubscription;
 import com.artemis.utils.IntBag;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.api.EBag;
@@ -15,6 +16,7 @@ import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 import net.mostlyoriginal.game.system.render.TransitionSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.util.ScriptUtils;
 
 /**
@@ -27,7 +29,10 @@ public class GoalReachedSystem extends FluidIteratingSystem {
     private boolean goalReached;
     private boolean done = false;
     private TransitionSystem transitionSystem;
+    private GameScreenAssetSystem assetSystem;
 
+    public int solveCount=0;
+    public int lastSolveCount=0;
     public GoalReachedSystem() {
         super(Aspect.all(Goal.class));
     }
@@ -42,6 +47,7 @@ public class GoalReachedSystem extends FluidIteratingSystem {
     protected void begin() {
         super.begin();
         goalReached = true;
+        solveCount=0;
     }
 
     @Override
@@ -52,6 +58,11 @@ public class GoalReachedSystem extends FluidIteratingSystem {
             G.level += 1;
             transitionSystem.transition(GameScreen.class, 2);
         }
+
+        if ( solveCount != lastSolveCount) {
+            lastSolveCount = solveCount;
+            assetSystem.playSfx("job-" + MathUtils.random(1,3),0.1f);
+        }
     }
 
     @Override
@@ -59,6 +70,7 @@ public class GoalReachedSystem extends FluidIteratingSystem {
         if (done) return;
         E producer = findProducer(e.goalType());
         if (producer != null) {
+            solveCount++;
             int max = producer.producingCount();
             int reservedIndex = producer.producingReserved();
             producer.producingReserved(reservedIndex + 1);

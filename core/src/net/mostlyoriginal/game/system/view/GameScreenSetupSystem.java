@@ -115,6 +115,8 @@ public class GameScreenSetupSystem extends BaseSystem {
         spawnTitle(levelData.title, G.SCREEN_CENTER_Y + height * 32f + 64);
         spawnTiles(levelData, width, height);
         spawnGoals(levelData, G.SCREEN_CENTER_Y + height * 32f);
+
+        assetSystem.playMusicInGame(levelData.music);
     }
 
     private void spawnTitle(String title, float y) {

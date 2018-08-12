@@ -2,12 +2,14 @@ package net.mostlyoriginal.game.system.map;
 
 import com.artemis.Aspect;
 import com.artemis.E;
+import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.component.ui.Clicked;
 import net.mostlyoriginal.game.component.ui.Explodable;
 import net.mostlyoriginal.game.component.ui.Slideable;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.util.ScriptUtils;
 
 /**
@@ -20,6 +22,7 @@ public class GridInteractSystem extends FluidIteratingSystem {
     GridUpdateSystem gridUpdateSystem;
     RenderBatchingSystem renderBatchingSystem;
     CollapsingTileSystem collapsingTileSystem;
+    private GameScreenAssetSystem assetSystem;
 
 
     public GridInteractSystem() {
@@ -37,6 +40,7 @@ public class GridInteractSystem extends FluidIteratingSystem {
         if (!hasActed) {
 
             if (e.hasSlideable()) {
+                assetSystem.playSfx("slip-" + MathUtils.random(1,2),0.1f);
                 gridUpdateSystem.slideInwards(e.tileX(), e.tileY(), e.slideableX(), e.slideableY());
                 renderBatchingSystem.sortedDirty = true;
                 hasActed = true;
