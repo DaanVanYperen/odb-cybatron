@@ -25,9 +25,15 @@ public class GridProductionSystem extends FluidIteratingSystem {
         GridUpdateSystem.Meta meta = gridUpdateSystem.get(e.tileX(), e.tileY());
 
         if (e.tileType() == TileType.TOWER) {
-            final int nearbyFarms = meta.neighboursOfType(TileType.FARM);
+            final int nearbyFarms = meta.neighboursOfType(TileType.FARM) - meta.neighboursOfType(TileType.FACTORY);
             e.producingProduct(ProductType.POPULATION);
             e.producingCount(nearbyFarms);
+        }
+
+        if (e.tileType() == TileType.FACTORY) {
+            final int nearbyFactories = meta.neighboursOfType(TileType.FACTORY);
+            e.producingProduct(ProductType.CHIPS);
+            e.producingCount(nearbyFactories);
         }
     }
 }

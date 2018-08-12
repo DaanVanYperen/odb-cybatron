@@ -1,0 +1,18 @@
+{
+  "title": "11. Syndicate Valley",
+  "hint": "The factories need to end up in a rectangle.",
+  "width": 8,
+  "height": 8,
+  "music":"cybatron1.mp3",
+  "goals":["CHIPS", "CHIPS","CHIPS", "CHIPS","CHIPS", "CHIPS","CHIPS", "CHIPS", "POPULATION","POPULATION","POPULATION", "POPULATION"],
+  "map": [
+    [ " ", " ", "-", "-", "-", " ", " ", " " ],
+    [ " ", "-", "-", "T", "F", "-", " ", " " ],
+    [ "M", "-", "-", "-", "-", "-", " ", " " ],
+    [ "T", "-", "C", "-", "C", "-", "T", "~" ],
+    [ "~", "-", "F", "-", "-", "C", "-", "F" ],
+    [ " ", "-", "-", "C", "-", "-", "-", "~" ],
+    [ " ", "-", "-", "-", "F", "-", " ", " " ],
+    [ " ", " ", " ", "T", "~", " ", " ", " " ],
+  ]
+}
