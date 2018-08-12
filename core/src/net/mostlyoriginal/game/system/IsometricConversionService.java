@@ -42,7 +42,7 @@ public class IsometricConversionService extends BaseSystem {
             int y = e.tileY() * ISO_Y;
 
             float maxMapHeight = gridUpdateSystem.height * ISO_Y;
-            float maxMapWidth = gridUpdateSystem.width * ISO_X * 0.5f + ISO_X * 0.5f;
+            float maxMapWidth = (gridUpdateSystem.width) * ISO_X * 0.5f ;
 
             float targetX = isoXtoWorldSpace(x, y) + G.SCREEN_CENTER_X - maxMapWidth / 2;
             float targetY = isoYtoWorldSpace(x, y) + ISO_Y;
