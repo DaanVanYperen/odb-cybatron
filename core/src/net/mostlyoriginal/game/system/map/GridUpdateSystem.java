@@ -78,7 +78,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     final Meta tile = get(x, y);
-                    if (tile.notEmpty() && !tile.e.hasFoundation()) {
+                    if (tile.notEmpty() && tile.e.hasCollapsible()) {
                         tile.e.explodable();
                     }
                 }

@@ -184,6 +184,10 @@ public class GameScreenSetupSystem extends BaseSystem {
             e.foundation();
         }
 
+        if ( type == TileType.SOIL || type == TileType.WATER) {
+            e.collapsible();
+        }
+
         String targetAnim = e.tileType().sprite;
         if (e.animId() == null || !e.animId().equals(targetAnim)) {
             e.animId(targetAnim);

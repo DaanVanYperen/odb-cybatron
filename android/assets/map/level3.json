@@ -1,13 +1,13 @@
 {
-  "title": "The Right Order",
+  "title": "Without support blocks fall.",
   "width": 5,
   "height": 5,
-  "goals":["POPULATION","POPULATION","POPULATION","POPULATION"],
+  "goals":["POPULATION"],
   "map": [
-    [ " ", "-", "-","-", " " ],
-    [ "-", "T", "-","T", "-" ],
-    [ "-", "-", "F","-", "-" ],
-    [ " ", "-", "-","M", "-" ],
-    [ " ", "T", "F","T", " " ]
+    [ " ", " ", " "," "," " ],
+    [ " ", "M", "F","M"," " ],
+    [ " ", " ", " "," "," " ],
+    [ " ", " ", "T","M"," " ],
+    [ " ", " ", " "," "," " ]
   ]
 }

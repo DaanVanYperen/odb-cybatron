@@ -1,0 +1,13 @@
+{
+  "title": "Share Your Protein",
+  "width": 5,
+  "height": 5,
+  "goals":["POPULATION","POPULATION","POPULATION","POPULATION"],
+  "map": [
+    [ "M", "M", "-","-", "M" ],
+    [ "F", "-", "-","M", "M" ],
+    [ "~", "-", "T","-", "M" ],
+    [ "T", "-", "F","-", "-" ],
+    [ "-", "-", "~","-", "-" ]
+  ]
+}

@@ -1,11 +1,11 @@
 {
-  "title": "Feed the masses",
+  "title": "Feed the People, Close the gap.",
   "width": 3,
   "height": 3,
   "goals":["POPULATION"],
   "map": [
     [ "~", "~", "~" ],
-    [ "T", "-", "F" ],
+    [ "T", " ", "F" ],
     [ "~", "~", "~" ]
   ]
 }
