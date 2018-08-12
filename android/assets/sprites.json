@@ -557,5 +557,25 @@
       "width": 16,
       "height": 16,
     },
+    {
+      "id": "reset-button",
+      "comment": "reset button",
+      "x": 0,
+      "y": 888,
+      "countX": 1,
+      "countY": 1,
+      "width": 68
+      "height": 68,
+    },
+    {
+      "id": "reset-button-mouseover",
+      "comment": "reset button mouseover",
+      "x": 0,
+      "y": 956,
+      "countX": 1,
+      "countY": 1,
+      "width": 68
+      "height": 68,
+    },
   ]
 }
