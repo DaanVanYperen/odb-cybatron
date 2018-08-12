@@ -51,11 +51,11 @@ public class IsometricConversionService extends BaseSystem {
         }
     }
 
-    private float isoYtoWorldSpace(int x, int y) {
+    public static float isoYtoWorldSpace(int x, int y) {
         return (x / 2.0f) + (y / 2.0f);
     }
 
-    private float isoXtoWorldSpace(int x, int y) {
+    public static float isoXtoWorldSpace(int x, int y) {
         return x - y;
     }
 }

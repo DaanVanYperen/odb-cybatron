@@ -13,6 +13,10 @@ public class Tile extends Component {
 
     @EntityId
     public int indicatorId = -1;
+    @EntityId
+    public int indicatorBackId = -1;
+    @EntityId
+    public int directionalIndicatorId = -1;
 
     public void set(int x, int y) {
         this.x = x;

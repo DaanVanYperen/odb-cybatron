@@ -4,18 +4,26 @@ import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.api.component.basic.Pos;
 import net.mostlyoriginal.api.component.graphics.Render;
+import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.api.component.ui.BitmapFontAsset;
 import net.mostlyoriginal.api.component.ui.Label;
+import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.operation.OperationFactory;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
+import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.component.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
 import static com.artemis.E.E;
+import static net.mostlyoriginal.api.operation.JamOperationFactory.*;
+import static net.mostlyoriginal.api.operation.OperationFactory.*;
+import static net.mostlyoriginal.api.utils.Duration.seconds;
 
 /**
  * @author Daan van Yperen
@@ -23,6 +31,7 @@ import static com.artemis.E.E;
 @Wire
 public class GameScreenSetupSystem extends BaseSystem {
 
+    private static final Tint TITLE_TINT = new Tint(1f, 1f, 1f, 0.5f);
     GameScreenAssetSystem assetSystem;
     GridUpdateSystem gridUpdateSystem;
     IsometricConversionService isometricConversionService;
@@ -42,7 +51,7 @@ public class GameScreenSetupSystem extends BaseSystem {
     @Override
     protected void initialize() {
         spawnMouse();
-        spawnMap("map/level"+G.level+".json");
+        spawnMap("map/level" + G.level + ".json");
         spawnResetButton();
         //spawnCar();
 //
@@ -69,7 +78,7 @@ public class GameScreenSetupSystem extends BaseSystem {
                 .renderLayer(9999)
                 .bounds();
 
-        assetSystem.boundToAnim(e.id(),0,0);
+        assetSystem.boundToAnim(e.id(), 0, 0);
     }
 
     private void spawnCar() {
@@ -115,6 +124,14 @@ public class GameScreenSetupSystem extends BaseSystem {
                 .labelAlign(Label.Align.RIGHT)
                 .tint(1f, 1f, 1f, 0.5f)
                 .renderLayer(100000)
+                .script(
+                        sequence(
+                                delay(seconds(0.5f)),
+                                tintBetween(TITLE_TINT, Tint.WHITE, seconds(3f), Interpolation.pow2),
+                                delay(seconds(2f)),
+                                tintBetween(Tint.WHITE,TITLE_TINT, seconds(3f), Interpolation.pow2)
+                        )
+                )
                 .fontFontName("ail");
     }
 
@@ -163,7 +180,7 @@ public class GameScreenSetupSystem extends BaseSystem {
                 .pos()
                 .clickable();
 
-        if ( type == TileType.MOUNTAIN  ) {
+        if (type == TileType.MOUNTAIN) {
             e.foundation();
         }
 
