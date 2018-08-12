@@ -1,0 +1,17 @@
+{
+  "title": "12. Protein tastes like chicken.",
+  "hint": "Move the towers clockwise.",
+  "width": 7,
+  "height": 7,
+  "music":"cybatron2.mp3",
+  "goals":["POPULATION","POPULATION","POPULATION", "POPULATION"],
+  "map": [
+    [ " ", " ", " ", " ", " ", " ", " " ],
+    [ " ", " ", " ", " ", " ", "M", " " ],
+    [ " ", "~", "T", "-", "-", "-", " " ],
+    [ " ", "~", "-", "F", "T", "T", " " ],
+    [ " ", "-", "-", "-", "T", "-", " " ],
+    [ " ", "~", "~", "M", "~", "M", " " ],
+    [ " ", " ", " ", " ", " ", " ", " " ],
+  ]
+}
