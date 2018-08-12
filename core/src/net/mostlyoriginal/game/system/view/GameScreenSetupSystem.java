@@ -186,7 +186,7 @@ public class GameScreenSetupSystem extends BaseSystem {
             e.foundation();
         }
 
-        if ( type == TileType.SOIL || type == TileType.WATER) {
+        if ( type == TileType.SOIL ) {
             e.collapsible();
         }
 

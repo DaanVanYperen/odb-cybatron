@@ -8,7 +8,8 @@ public enum TileType {
     WATER('~',"water",null),
     SOIL('-',"soil",null),
     FARM('F',"soil","farm"),
-    MOUNTAIN('M',"soil","mountain");
+    MOUNTAIN('M',"soil","mountain"),
+    FACTORY('C', "soil", "factory");
 
     public final char character;
     public final String sprite;

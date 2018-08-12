@@ -11,6 +11,7 @@ public class LevelData implements Serializable {
     public int width;
     public int height;
     public String music;
+    public String hint;
 
     public ProductType goals[];
 
