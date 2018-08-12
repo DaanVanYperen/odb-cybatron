@@ -399,13 +399,13 @@
     },
     {
       "id": "building",
-      "comment": "Basic building block",
+      "comment": "Basic residential building block",
       "x": 128,
-      "y": 880,
+      "y": 808,
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height": 80,
+      "height":152,
     },
     {
       "id": "mountain",
@@ -436,7 +436,7 @@
       "countY": 1,
       "width": 128,
       "height": 112,
-      "milliseconds": 500,
+      "milliseconds": 250,
       "repeat": true
     },
     {
@@ -448,7 +448,7 @@
       "countY": 1,
       "width": 128,
       "height": 64,
-      "milliseconds": 500,
+      "milliseconds": 250,
       "repeat": true
     },
     {
@@ -460,7 +460,7 @@
       "countY": 1,
       "width": 128,
       "height": 64,
-      "milliseconds": 500,
+      "milliseconds": 250,
       "repeat": true
     },
     {
@@ -472,7 +472,7 @@
       "countY": 1,
       "width": 128,
       "height": 64,
-      "milliseconds": 500,
+      "milliseconds": 250,
       "repeat": true
     },
     {
@@ -484,7 +484,7 @@
       "countY": 1,
       "width": 128,
       "height": 64,
-      "milliseconds": 500,
+      "milliseconds": 250,
       "repeat": true
     },
     {
