@@ -19,13 +19,10 @@ import net.mostlyoriginal.api.system.render.ClearScreenSystem;
 import net.mostlyoriginal.game.GdxArtemisGame;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.system.IsometricAttachmentSystem;
-import net.mostlyoriginal.game.system.map.GoalReachedSystem;
-import net.mostlyoriginal.game.system.map.GridInteractSystem;
+import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
-import net.mostlyoriginal.game.system.map.GridProductionSystem;
 import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.detection.PixelCollisionService;
-import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 import net.mostlyoriginal.game.system.render.*;
 import net.mostlyoriginal.game.system.ui.MouseClickSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
@@ -73,6 +70,7 @@ public class GameScreen extends WorldScreen {
                         // call after tiles have been changed but before we act on it.
                         new GridInteractSystem(),
                         new GridUpdateSystem(),
+                        new CollapsingTileSystem(),
 
                         new GridProductionSystem(),
                         new GoalReachedSystem(),

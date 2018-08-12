@@ -3,6 +3,9 @@ package net.mostlyoriginal.game.util;
 import com.artemis.E;
 import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
+import net.mostlyoriginal.api.operation.OperationFactory;
+
+import static net.mostlyoriginal.api.utils.Duration.milliseconds;
 
 /**
  * @author Daan van Yperen
@@ -22,5 +25,22 @@ public class ScriptUtils {
                     )
             );
         }
+    }
+
+    public static void collapse(E e) {
+        e
+                .script(
+                        OperationFactory.sequence(
+                                JamOperationFactory.moveBetween(
+                                        e.posX(),
+                                        e.posY(),
+                                        e.posX(),
+                                        -500,
+                                        milliseconds(500),
+                                        Interpolation.pow4In
+                                ),
+                                OperationFactory.deleteFromWorld()
+                        )
+                );
     }
 }

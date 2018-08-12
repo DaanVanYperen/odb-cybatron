@@ -9,6 +9,7 @@ import net.mostlyoriginal.game.component.TileType;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
+import net.mostlyoriginal.game.util.ScriptUtils;
 
 /**
  * @author Daan van Yperen
@@ -24,6 +25,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
     IsometricConversionService isometricConversionService;
     private GameScreenAssetSystem assetSystem;
     private RenderBatchingSystem renderBatchingSystem;
+    private CollapsingTileSystem collapsingTileSystem;
 
     public GridUpdateSystem() {
         super(Aspect.all(Tile.class));
@@ -65,6 +67,9 @@ public class GridUpdateSystem extends FluidIteratingSystem {
                 if (tile.isUnsolvedHole()) {
                     tile.makeNeighboursSlidable();
                     anySlidable = true;
+                } else if (tile.isUnsupported()) {
+                    collapsingTileSystem.prepare(tile.e);
+                    map[y][x].e = null;
                 }
             }
         }
@@ -141,8 +146,21 @@ public class GridUpdateSystem extends FluidIteratingSystem {
             e = null;
         }
 
+        public int neighbourCount() {
+            int count = 0;
+            if (east().notEmpty()) count++;
+            if (north().notEmpty()) count++;
+            if (west().notEmpty())  count++;
+            if (south().notEmpty()) count++;
+            return count;
+        }
+
         public boolean isUnsolvedHole() {
             return !notEmpty() && ((east().notEmpty() && west().notEmpty()) || (north().notEmpty() && south().notEmpty()));
+        }
+
+        public boolean isUnsupported() {
+            return notEmpty() && neighbourCount() <= 1;
         }
 
         public int neighboursOfType(TileType type) {
