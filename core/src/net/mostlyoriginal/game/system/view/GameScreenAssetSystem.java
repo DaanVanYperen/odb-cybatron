@@ -35,30 +35,6 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
         loadSprites();
         loadSounds(
                 new String[]{
-                        "carsound_oilskid_1",
-                        "carsound_skid_2",
-                        "countdown_3",
-                        "crash_1",
-                        "crash_2",
-                        "FAIL",
-                        "hook",
-                        "frog_godwhy",
-                        "pop_1", // used
-                        "pop_2", // used
-                        "rewardsound_1", // used
-                        "rewardsound_2",
-                        "rewardsound_3", // used
-                        "chain_1",
-                        "chain_2",
-                        "chain_3",
-                        "chain_4",
-                        "truck_revdown",
-                        "truck_revhigh",
-                        "truck_revlow",
-                        "truck_revup",
-                        "truck_revdown_fast",
-                        "truck_revup_fast",
-                        //"wreck_happy",
                 }
         );
 

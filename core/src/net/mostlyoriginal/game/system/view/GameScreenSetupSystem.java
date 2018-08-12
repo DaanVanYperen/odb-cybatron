@@ -1,14 +1,21 @@
 package net.mostlyoriginal.game.system.view;
 
+import com.artemis.BaseSystem;
 import com.artemis.E;
 import com.artemis.annotations.Wire;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
+import net.mostlyoriginal.api.component.basic.Pos;
+import net.mostlyoriginal.api.component.graphics.Render;
+import net.mostlyoriginal.api.component.ui.BitmapFontAsset;
+import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.LevelData;
 import net.mostlyoriginal.game.component.ProductType;
 import net.mostlyoriginal.game.component.TileType;
+import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
 import static com.artemis.E.E;
@@ -17,15 +24,29 @@ import static com.artemis.E.E;
  * @author Daan van Yperen
  */
 @Wire
-public class GameScreenSetupSystem extends PassiveSystem {
+public class GameScreenSetupSystem extends BaseSystem {
 
     GameScreenAssetSystem assetSystem;
     GridUpdateSystem gridUpdateSystem;
+    IsometricConversionService isometricConversionService;
+
+    public float cooldown = 0;
+
+
+    @Override
+    protected void processSystem() {
+        cooldown -= world.delta;
+//        if ( cooldown<=0) {
+//            cooldown += MathUtils.random(0.1f,10f);
+//            spawnCar();
+//        }
+    }
 
     @Override
     protected void initialize() {
         spawnMouse();
-        spawnMap("map/level1.json");
+        spawnMap("map/level2.json");
+        //spawnCar();
 //
 //        LevelData object = new LevelData();
 //        object.width=3;
@@ -40,6 +61,19 @@ public class GameScreenSetupSystem extends PassiveSystem {
 //        Json json = new Json();
 //        json.setOutputType(JsonWriter.OutputType.json);
 //        System.out.println(json.toJson(object));
+    }
+
+    private void spawnCar() {
+        int distance = 0;
+        float velocity = 10;
+
+        E.E()
+                .anim("car-1-topright")
+                .glowAge(distance * 0.1f)
+                .pos(MathUtils.random(1f, G.SCREEN_WIDTH), -30f + distance)
+                .physicsVelocity(20f * velocity, 10f * velocity, 0f)
+                .physicsFriction(0f)
+                .renderLayer(8000);
     }
 
     private void spawnMouse() {
@@ -60,36 +94,52 @@ public class GameScreenSetupSystem extends PassiveSystem {
         int width = levelData.width;
         int height = levelData.height;
 
+        spawnTitle(levelData.title, G.SCREEN_CENTER_Y + height * 32f + 64);
+        spawnTiles(levelData, width, height);
+        spawnGoals(levelData, G.SCREEN_CENTER_Y + height * 32f);
+    }
+
+    private void spawnTitle(String title, float y) {
+        E.E()
+                .pos(G.SCREEN_CENTER_X, y)
+                .labelText(title)
+                .labelAlign(Label.Align.RIGHT)
+                .tint(1f, 1f, 1f, 0.5f)
+                .renderLayer(100000)
+                .fontFontName("ail");
+    }
+
+    private void spawnTiles(LevelData levelData, int width, int height) {
         gridUpdateSystem.init(width, height);
         for (int gridX = 0; gridX < width; gridX++) {
             for (int gridY = 0; gridY < height; gridY++) {
                 final TileType type = TileType.byCharacter(levelData.map[gridY][gridX]);
-                spawnCell(gridX, gridY, type);
+                if (type != null) {
+                    spawnCell(gridX, gridY, type);
+                }
             }
         }
-
-        spawnGoals(levelData,  G.SCREEN_CENTER_Y + height * 32f);
     }
 
     private void spawnGoals(LevelData levelData, float y) {
-        int goalIndex=0;
+        int goalIndex = 0;
         int goalCount = levelData.goals.length;
         for (ProductType type : levelData.goals) {
-            spawnGoal(type,goalIndex++, goalCount, y);
+            spawnGoal(type, goalIndex++, goalCount, y);
         }
     }
 
     private void spawnGoal(ProductType type, int goalIndex, int goalCount, float y) {
 
-        float startX = G.SCREEN_CENTER_X + -goalCount * 8 + goalIndex * 16;
+        float startX = G.SCREEN_CENTER_X + -goalCount * 10 + goalIndex * 20;
         float startY = y;
         E()
                 .goalType(type)
                 .goalStartX(startX)
                 .goalStartY(startY)
                 .anim(type.sprite)
-                .renderLayer(1000)
-                .bounds(0,0,24,24)
+                .renderLayer(1000 + goalIndex)
+                .bounds(0, 0, 24, 24)
                 .pos(startX, startY);
     }
 
@@ -105,12 +155,14 @@ public class GameScreenSetupSystem extends PassiveSystem {
                 .clickable();
 
         String targetAnim = e.tileType().sprite;
-        if ( e.animId() == null || !e.animId().equals(targetAnim)) {
+        if (e.animId() == null || !e.animId().equals(targetAnim)) {
             e.animId(targetAnim);
             assetSystem.boundToAnim(e.id(), 0, 0);
         }
 
-        if ( type.decorationSprite != null ) {
+        isometricConversionService.applyIsoToWorldSpace(e);
+
+        if (type.decorationSprite != null) {
             spawnDecoration(e, type.decorationSprite);
         }
     }

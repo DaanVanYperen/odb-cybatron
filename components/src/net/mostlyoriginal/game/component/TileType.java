@@ -24,6 +24,6 @@ public enum TileType {
         for (TileType tileType : TileType.values()) {
             if ( tileType.character == character) return tileType;
         }
-        throw new RuntimeException();
+        return null;
     }
 }

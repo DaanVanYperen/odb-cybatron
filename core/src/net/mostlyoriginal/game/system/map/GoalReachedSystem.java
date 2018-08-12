@@ -35,9 +35,11 @@ public class GoalReachedSystem extends FluidIteratingSystem {
     protected void process(E e) {
         E producer = findProducer(e.goalType());
         if (producer != null) {
-            producer.producingReserved(producer.producingReserved() + 1);
+            int max = producer.producingCount();
+            int reservedIndex = producer.producingReserved();
+            producer.producingReserved(reservedIndex + 1);
             if ( !e.hasScript()) {
-                ScriptUtils.graduallyMoveTowards(e, producer.posX() + IsometricConversionService.ISO_X - e.getBounds().cx(), producer.posY() + 128 + 32, Duration.milliseconds(1000));
+                ScriptUtils.graduallyMoveTowards(e, producer.posX() + IsometricConversionService.ISO_X  - max * 10 + reservedIndex * 20, producer.posY() + 128 + 32, Duration.milliseconds(1000));
             }
         } else {
             if ( !e.hasScript()) {

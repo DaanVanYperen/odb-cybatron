@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class LevelData implements Serializable {
 
+    public String title;
     public int width;
     public int height;
 

@@ -22,16 +22,20 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
     protected void process(E e) {
         if (e.hasSlideable()) {
             e.tint(1f, 1f, 1f, 1f);
-            if (e.hasTile()) {
+            if (e.hasTile() && e.hasHovered()) {
                 if (e.slideableX() == -1) replaceIndicator(e, "UI-arrow-bottomleft");
                 if (e.slideableX() == 1) replaceIndicator(e, "UI-arrow-topright");
                 if (e.slideableY() == -1) replaceIndicator(e, "UI-arrow-bottomright");
                 if (e.slideableY() == 1) replaceIndicator(e, "UI-arrow-topleft");
+            } else {
+                removeIndicator(e);
             }
-        } else if (e.hasExplodable()) {
+        } else if (e.hasExplodable() && e.hasHovered()) {
             e.tint(1f, 1f, 1f, 1f);
             if (e.hasTile()) {
                 replaceIndicator(e, "UI-destroy");
+            } else {
+                removeIndicator(e);
             }
         } else {
             e.tint(0.8f, 0.8f, 0.8f, 1f);
@@ -67,7 +71,7 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
                     .posY(e.posY())
                     .tint(1f,1f,1f,0.8f)
                     .attachedParent(e.id())
-                    .attachedYo(65)
+                    .attachedYo(63)
                     .renderLayer(e.renderLayer() + 1);
 
             e.tileIndicatorId(indicator.id());
