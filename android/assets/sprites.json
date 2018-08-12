@@ -388,6 +388,16 @@
       "height": 128,
     },
     {
+      "id": "soil-brittle",
+      "comment": "Brittle soil block",
+      "x": 0,
+      "y": 352,
+      "countX": 1,
+      "countY": 1,
+      "width": 128,
+      "height": 128,
+    },
+    {
       "id": "soil-indestructible",
       "comment": "Indestructible soil block",
       "x": 0,
