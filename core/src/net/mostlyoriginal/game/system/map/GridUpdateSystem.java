@@ -4,6 +4,7 @@ import com.artemis.Aspect;
 import com.artemis.E;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
 import net.mostlyoriginal.api.utils.Duration;
+import net.mostlyoriginal.game.component.IsoPos;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.component.TileType;
 import net.mostlyoriginal.game.system.IsometricConversionService;
@@ -67,7 +68,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
                 if (tile.isUnsolvedHole()) {
                     tile.makeNeighboursSlidable();
                     anySlidable = true;
-                } else if (tile.isUnsupported()) {
+                } else if (tile.isUnsupported() && !tile.e.hasFoundation()) {
                     collapsingTileSystem.prepare(tile.e);
                     map[y][x].e = null;
                 }
@@ -77,7 +78,7 @@ public class GridUpdateSystem extends FluidIteratingSystem {
             for (int x = 0; x < width; x++) {
                 for (int y = 0; y < height; y++) {
                     final Meta tile = get(x, y);
-                    if (tile.notEmpty() && !tile.e.hasFoundation()) {
+                    if (tile.notEmpty() && tile.e.hasCollapsible()) {
                         tile.e.explodable();
                     }
                 }

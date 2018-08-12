@@ -1,13 +1,13 @@
 {
-  "title": "Double Your Protein",
+  "title": "Without support blocks fall.",
   "width": 5,
   "height": 5,
-  "goals":["POPULATION","POPULATION","POPULATION","POPULATION"],
+  "goals":["POPULATION"],
   "map": [
-    [ "M", "M", "-","-", "M" ],
-    [ "F", "-", "-","M", "M" ],
-    [ "~", "-", "T","-", "M" ],
-    [ "T", "-", "F","-", "-" ],
-    [ "-", "-", "~","-", "-" ]
+    [ " ", " ", " "," "," " ],
+    [ " ", "M", "F","M"," " ],
+    [ " ", " ", " "," "," " ],
+    [ " ", " ", "T","M"," " ],
+    [ " ", " ", " "," "," " ]
   ]
 }
