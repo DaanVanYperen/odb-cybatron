@@ -418,6 +418,16 @@
       "height":152,
     },
     {
+      "id": "factory",
+      "comment": "Basic factory block",
+      "x": 0,
+      "y": 480,
+      "countX": 1,
+      "countY": 1,
+      "width": 128,
+      "height":160,
+    },
+    {
       "id": "mountain",
       "comment": "Basic mountain block",
       "x": 256,
