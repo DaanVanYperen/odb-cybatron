@@ -6,10 +6,11 @@ package net.mostlyoriginal.game.component;
 public enum TileType {
     TOWER('T',"soil","building"),
     WATER('~',"water",null),
-    SOIL('-',"soil",null),
+    SOIL('-',"soil-brittle",null),
     FARM('F',"soil","farm"),
     MOUNTAIN('M',"soil","mountain"),
-    FACTORY('C', "soil", "factory");
+    FACTORY('C', "soil", "factory"),
+    REINFORCED('X', "soil-indestructible", null);
 
     public final char character;
     public final String sprite;

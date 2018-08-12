@@ -59,7 +59,7 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
         }
     }
 
-    private void removeIndicator(E e) {
+    public void removeIndicator(E e) {
         int indicatorId = e.tileIndicatorId();
         if (indicatorId != -1) {
             E.E(indicatorId).deleteFromWorld();

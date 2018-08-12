@@ -9,6 +9,7 @@ import net.mostlyoriginal.game.component.ui.Clicked;
 import net.mostlyoriginal.game.component.ui.Explodable;
 import net.mostlyoriginal.game.component.ui.Slideable;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
+import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.util.ScriptUtils;
 
@@ -23,6 +24,7 @@ public class GridInteractSystem extends FluidIteratingSystem {
     RenderBatchingSystem renderBatchingSystem;
     CollapsingTileSystem collapsingTileSystem;
     private GameScreenAssetSystem assetSystem;
+    private MouseOverReactSystem mouseOverReactSystem;
 
 
     public GridInteractSystem() {
@@ -40,6 +42,7 @@ public class GridInteractSystem extends FluidIteratingSystem {
         if (!hasActed) {
 
             if (e.hasSlideable()) {
+                mouseOverReactSystem.removeIndicator(e);
                 assetSystem.playSfx("slip-" + MathUtils.random(1,2),0.1f);
                 gridUpdateSystem.slideInwards(e.tileX(), e.tileY(), e.slideableX(), e.slideableY());
                 renderBatchingSystem.sortedDirty = true;

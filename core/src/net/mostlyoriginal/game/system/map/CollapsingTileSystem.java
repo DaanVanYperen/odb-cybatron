@@ -30,6 +30,7 @@ public class CollapsingTileSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e) {
+        if ( e.hasScript()) return;
         e.collapsingCooldown(e.collapsingCooldown() - world.delta);
         if (e.collapsingCooldown() <= 0) {
             e.removeCollapsing();
@@ -42,7 +43,6 @@ public class CollapsingTileSystem extends FluidIteratingSystem {
         e.removeTile()
                 .removeProducing()
                 .removeExplodable()
-                .removeScript()
                 .collapsingCooldown(delay);
         delay += COLLAPSE_DELAY_PER_TILE_SECONDS;
     }
