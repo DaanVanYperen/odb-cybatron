@@ -1,5 +1,6 @@
 {
   "title": "9. Chain of Production",
+  "hint": "Factories need to touch other factories to produce.",
   "width": 5,
   "height": 6,
   "music":"cybatron4.mp3",

@@ -1,5 +1,6 @@
 {
   "title": "6. Meet At The Center",
+  "hint": "Make holes to move your buildings closer. Have something to pull towards.",
   "width": 5,
   "height": 5,
   "music":"cybatron5.mp3",
@@ -9,6 +10,6 @@
     [ "-", "-", "-","-", " " ],
     [ "T", "M", "-","M", "F" ],
     [ " ", "-", "-","-", "-" ],
-    [ " ", " ", " ","M", "M" ]
+    [ " ", " ", " "," ", "M" ]
   ]
 }

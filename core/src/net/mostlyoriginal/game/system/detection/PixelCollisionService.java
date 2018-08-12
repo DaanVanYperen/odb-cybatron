@@ -32,6 +32,7 @@ public class PixelCollisionService extends BaseSystem {
 
     /** Check if cursor is hitting one of the pixels of target entity. */
     public boolean collides(E cursor, E topic) {
+        if ( pixMap == null ) return false;
 
         if ( topic.animId() == null ) return false;
         if ( !topic.clickablePixelPerfect() ) return true;
@@ -54,5 +55,10 @@ public class PixelCollisionService extends BaseSystem {
 
     private TextureRegion getAnim(E topic) {
         return ((Animation<TextureRegion>) assetSystem.get(topic.animId())).getKeyFrame(0);
+    }
+
+    public void releasePixmap() {
+        pixMap.dispose();
+        pixMap = null;
     }
 }

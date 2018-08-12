@@ -56,7 +56,7 @@ public class GoalReachedSystem extends FluidIteratingSystem {
         if (goalReached && !done) {
             done = true;
             G.level += 1;
-            transitionSystem.transition(GameScreen.class, 2);
+            transitionSystem.transition(GameScreen.class, 2.5f);
         }
 
         if ( solveCount != lastSolveCount) {
@@ -67,14 +67,16 @@ public class GoalReachedSystem extends FluidIteratingSystem {
 
     @Override
     protected void process(E e) {
-        if (done) return;
         E producer = findProducer(e.goalType());
-        if (producer != null) {
+        if (producer != null && !producer.hasScript()) {
             solveCount++;
             int max = producer.producingCount();
             int reservedIndex = producer.producingReserved();
             producer.producingReserved(reservedIndex + 1);
             if (!e.hasScript()) {
+                //e.removeScript()
+                //e.goalGoalX((int)producer.posX());
+               // e.goalGoalY((int)producer.posY());
                 ScriptUtils.graduallyMoveTowards(e, producer.posX() + IsometricConversionService.ISO_X - max * 10 + reservedIndex * 20, producer.posY() + 128 + 32, Duration.milliseconds(1000));
             }
         } else {

@@ -9,6 +9,7 @@ import com.artemis.utils.reflect.ClassReflection;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import net.mostlyoriginal.game.component.logic.Transition;
+import net.mostlyoriginal.game.system.detection.PixelCollisionService;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 import static com.artemis.E.*;
@@ -26,6 +27,7 @@ public class TransitionSystem extends EntityProcessingSystem {
     private Game game;
     private GameScreenAssetSystem assetSystem;
     private boolean triggered=false;
+    private PixelCollisionService pixelCollisionService;
 
     public TransitionSystem(Game game) {
         super(Aspect.all(Transition.class));
@@ -50,6 +52,7 @@ public class TransitionSystem extends EntityProcessingSystem {
         if ( !triggered ) {
             triggered=true;
             try {
+                pixelCollisionService.releasePixmap();
                 assetSystem.stopMusic();
                 game.setScreen(ClassReflection.newInstance(E(e).transitionScreen()));
             } catch (Exception ex) {

@@ -9,6 +9,8 @@ public class Goal extends Component {
     public ProductType type;
     public float startX;
     public float startY;
+    public int goalX;
+    public int goalY;
     public Goal() {
     }
 }
