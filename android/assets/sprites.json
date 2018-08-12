@@ -560,8 +560,8 @@
     {
       "id": "reset-button",
       "comment": "reset button",
-      "x": 0,
-      "y": 888,
+      "x": 888,
+      "y": 000,
       "countX": 1,
       "countY": 1,
       "width": 68
@@ -570,8 +570,8 @@
     {
       "id": "reset-button-mouseover",
       "comment": "reset button mouseover",
-      "x": 0,
-      "y": 956,
+      "x": 956,
+      "y": 0,
       "countX": 1,
       "countY": 1,
       "width": 68
