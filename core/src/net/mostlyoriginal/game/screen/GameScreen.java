@@ -25,6 +25,7 @@ import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.detection.PixelCollisionService;
 import net.mostlyoriginal.game.system.render.*;
 import net.mostlyoriginal.game.system.ui.MouseClickSystem;
+import net.mostlyoriginal.game.system.ui.ResetSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.system.view.GameScreenSetupSystem;
 import net.mostlyoriginal.plugin.OperationsPlugin;
@@ -76,6 +77,7 @@ public class GameScreen extends WorldScreen {
                         new GoalReachedSystem(),
 
                         new IsometricAttachmentSystem(),
+                        new ResetSystem(),
 
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),

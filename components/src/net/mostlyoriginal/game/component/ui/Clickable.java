@@ -13,4 +13,5 @@ public class Clickable extends Component {
     }
 
     public ClickState state = ClickState.NONE;
+    public boolean pixelPerfect = true;
 }

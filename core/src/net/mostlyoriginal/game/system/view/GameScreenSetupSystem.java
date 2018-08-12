@@ -11,10 +11,7 @@ import net.mostlyoriginal.api.component.graphics.Render;
 import net.mostlyoriginal.api.component.ui.BitmapFontAsset;
 import net.mostlyoriginal.api.component.ui.Label;
 import net.mostlyoriginal.api.system.core.PassiveSystem;
-import net.mostlyoriginal.game.component.G;
-import net.mostlyoriginal.game.component.LevelData;
-import net.mostlyoriginal.game.component.ProductType;
-import net.mostlyoriginal.game.component.TileType;
+import net.mostlyoriginal.game.component.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
 
@@ -45,7 +42,8 @@ public class GameScreenSetupSystem extends BaseSystem {
     @Override
     protected void initialize() {
         spawnMouse();
-        spawnMap("map/level2.json");
+        spawnMap("map/level"+G.level+".json");
+        spawnResetButton();
         //spawnCar();
 //
 //        LevelData object = new LevelData();
@@ -61,6 +59,17 @@ public class GameScreenSetupSystem extends BaseSystem {
 //        Json json = new Json();
 //        json.setOutputType(JsonWriter.OutputType.json);
 //        System.out.println(json.toJson(object));
+    }
+
+    private void spawnResetButton() {
+        E e = E.E().pos(G.SCREEN_WIDTH - 68 - 32, 32)
+                .anim("reset-button")
+                .actionType(ActionType.RESET)
+                .clickablePixelPerfect(false)
+                .renderLayer(9999)
+                .bounds();
+
+        assetSystem.boundToAnim(e.id(),0,0);
     }
 
     private void spawnCar() {

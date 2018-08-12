@@ -43,7 +43,7 @@ public class G {
     public static final float SCREEN_CENTER_X = (G.SCREEN_WIDTH / CAMERA_ZOOM) / 2;
     public static final float SCREEN_CENTER_Y = (G.SCREEN_HEIGHT / CAMERA_ZOOM) / 2;
 
-    public static int level = 0;
+    public static int level = 1;
     public static float ROBOT_FLY_ABOVE_PLAYER_HEIGHT = 8;
 
     public static final float BAR_PER_SECOND_LOST_FOR_FLYING = 0.05f;

@@ -34,6 +34,7 @@ public class PixelCollisionService extends BaseSystem {
     public boolean collides(E cursor, E topic) {
 
         if ( topic.animId() == null ) return false;
+        if ( !topic.clickablePixelPerfect() ) return true;
 
         final int relativeX = (int)cursor.posX() - (int)topic.posX();
         final int relativeY = (int)cursor.posY() - (int)topic.posY();

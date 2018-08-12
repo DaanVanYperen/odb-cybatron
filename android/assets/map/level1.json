@@ -1,8 +1,8 @@
 {
-  "title": "Humans need protein packs",
+  "title": "Feed the masses",
   "width": 3,
   "height": 3,
-  "goals":["POPULATION","POPULATION"],
+  "goals":["POPULATION"],
   "map": [
     [ "~", "~", "~" ],
     [ "T", "-", "F" ],
