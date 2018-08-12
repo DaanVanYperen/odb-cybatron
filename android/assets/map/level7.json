@@ -1,0 +1,14 @@
+{
+  "title": "7. The Right Order",
+  "width": 5,
+  "height": 5,
+  "music":"cybatron3.mp3",
+  "goals":["POPULATION","POPULATION","POPULATION","POPULATION"],
+  "map": [
+    [ " ", "-", "-","-", " " ],
+    [ "-", "T", "-","T", "-" ],
+    [ "-", "-", "F","-", "-" ],
+    [ " ", "-", "-","M", "-" ],
+    [ " ", "T", "F","T", " " ]
+  ]
+}
