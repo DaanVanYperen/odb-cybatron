@@ -5,6 +5,7 @@ import com.artemis.E;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.game.component.Collapsing;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
+import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.util.ScriptUtils;
 
@@ -17,6 +18,7 @@ public class CollapsingTileSystem extends FluidIteratingSystem {
     private static final float FIRST_TILE_DELAY_SECONDS = 0.05f;
     private float delay = FIRST_TILE_DELAY_SECONDS;
     private GameScreenAssetSystem assetSystem;
+    private MouseOverReactSystem mouseOverReactSystem;
 
     public CollapsingTileSystem() {
         super(Aspect.all(Collapsing.class));
@@ -40,9 +42,16 @@ public class CollapsingTileSystem extends FluidIteratingSystem {
     }
 
     public void prepare(E e) {
+        if ( e.hasTile() ) {
+            mouseOverReactSystem.removeIndicator(e);
+        }
         e.removeTile()
                 .removeProducing()
                 .removeExplodable()
+                .removeClickable()
+                .removeClicked()
+                .removeHovered()
+                .tint(1f,1f,1f,1f)
                 .collapsingCooldown(delay);
         delay += COLLAPSE_DELAY_PER_TILE_SECONDS;
     }

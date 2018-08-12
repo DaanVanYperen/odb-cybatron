@@ -4,5 +4,5 @@ package net.mostlyoriginal.game.component;
  * @author Daan van Yperen
  */
 public enum ActionType {
-    RESET
+    HINT, RESET
 }

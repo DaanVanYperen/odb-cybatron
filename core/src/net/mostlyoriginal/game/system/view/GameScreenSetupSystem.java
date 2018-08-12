@@ -112,6 +112,7 @@ public class GameScreenSetupSystem extends BaseSystem {
         int width = levelData.width;
         int height = levelData.height;
 
+        spawnHint(levelData.hint, G.SCREEN_CENTER_Y + height * 32f + 128);
         spawnTitle(levelData.title, G.SCREEN_CENTER_Y + height * 32f + 64);
         spawnTiles(levelData, width, height);
         spawnGoals(levelData, G.SCREEN_CENTER_Y + height * 32f);
@@ -135,6 +136,26 @@ public class GameScreenSetupSystem extends BaseSystem {
                         )
                 )
                 .fontFontName("ail");
+    }
+
+    private void spawnHint(String title, float y) {
+        if ( title == null || title.isEmpty() ) return;
+        E.E()
+                .pos(G.SCREEN_CENTER_X, y)
+                .labelText("hint:" + title)
+                .labelAlign(Label.Align.RIGHT)
+                .tint(1f, 0f, 1f, 0f)
+                .tag("hint")
+                .fontFontName("ail");
+
+        E e = E.E().pos(32, 32)
+                .anim("hint-button")
+                .actionType(ActionType.HINT)
+                .clickablePixelPerfect(false)
+                .renderLayer(9999)
+                .bounds();
+
+        assetSystem.boundToAnim(e.id(), 0, 0);
     }
 
     private void spawnTiles(LevelData levelData, int width, int height) {

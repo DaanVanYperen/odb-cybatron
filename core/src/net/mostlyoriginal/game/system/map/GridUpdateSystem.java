@@ -174,10 +174,14 @@ public class GridUpdateSystem extends FluidIteratingSystem {
         }
 
         public void makeNeighboursSlidable() {
-            if (east().notEmpty()) east().e.slideable(-1, 0);
-            if (north().notEmpty()) north().e.slideable(0, -1);
-            if (west().notEmpty()) west().e.slideable(1, 0);
-            if (south().notEmpty()) south().e.slideable(0, 1);
+            if (east().notEmpty() && (!east().east().isType(TileType.REINFORCED))) east().e.slideable(-1, 0);
+            if (north().notEmpty()&& (!north().north().isType(TileType.REINFORCED))) north().e.slideable(0, -1);
+            if (west().notEmpty()&& (!west().west().isType(TileType.REINFORCED))) west().e.slideable(1, 0);
+            if (south().notEmpty()&& (!south().south().isType(TileType.REINFORCED))) south().e.slideable(0, 1);
+        }
+
+        private boolean isType(TileType type) {
+            return notEmpty() && e.hasTile() && e.tileType() == type;
         }
     }
 }

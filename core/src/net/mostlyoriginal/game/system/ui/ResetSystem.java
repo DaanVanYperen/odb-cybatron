@@ -3,10 +3,8 @@ package net.mostlyoriginal.game.system.ui;
 import com.artemis.Aspect;
 import com.artemis.E;
 import com.artemis.EntitySubscription;
+import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.operation.JamOperationFactory;
-import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.component.Action;
 import net.mostlyoriginal.game.component.ActionType;
 import net.mostlyoriginal.game.component.Tile;
@@ -47,8 +45,27 @@ public class ResetSystem extends FluidIteratingSystem {
         }
     }
 
+    private static final Tint HINT_TINT = new Tint(1f, 0f, 1f, 0.5f);
+
     @Override
     protected void process(E e) {
+        if (e.actionType() == ActionType.HINT) {
+            if (e.hasClicked()) {
+                entityWithTag("hint")
+                    .renderLayer(100000)
+                        .script(
+                                sequence(
+                                        delay(seconds(0.5f)),
+                                        tintBetween(Tint.TRANSPARENT, HINT_TINT, seconds(1f), Interpolation.pow2),
+                                        delay(seconds(10f)),
+                                        tintBetween(HINT_TINT, Tint.TRANSPARENT, seconds(3f), Interpolation.pow2)
+                                )
+                        );
+            }
+
+            e.animId(e.hasHovered() ? "hint-button-mouseover" : "hint-button");
+
+        }
         if (e.actionType() == ActionType.RESET) {
             if (e.hasClicked() && !resetting) {
                 reset(0.2f);
