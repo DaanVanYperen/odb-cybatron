@@ -1,9 +1,9 @@
 {
   "title": "15.  Customers from afar.",
-  "hint": "Perhaps it's time you started doing these without help.",
+  "hint": "Buildings first, meet the farms.",
   "width": 5,
   "height": 5,
-  "music":"cybatron3.mp3",
+  "music":"cybatron5.mp3",
   "goals":["POPULATION","POPULATION","ENTERTAINMENT"],
   "map": [
     [ "M", "F", "-","-","M" ],

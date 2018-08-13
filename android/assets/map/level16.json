@@ -1,9 +1,9 @@
 {
   "title": "16.  Industry and commerce.",
-  "hint": "You can't keep relying on others.",
+  "hint": "You can move the casino.",
   "width": 7,
   "height": 5,
-  "music":"cybatron3.mp3",
+  "music":"cybatron4.mp3",
   "goals":["CHIPS","CHIPS","POPULATION","POPULATION","ENTERTAINMENT"],
   "map": [
     [ " ","M","-","T","-","-","-" ],
