@@ -521,11 +521,11 @@
       "id": "farm",
       "comment": "Basic farm block",
       "x": 512,
-      "y": 896,
+      "y": 909,
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height": 64,
+      "height": 84,
     },
     {
       "id": "UI-destroy",
@@ -579,7 +579,7 @@
     },
     {
       "id": "icon-population",
-      "comment": "icon for population resource",
+      "comment": "inactive icon for population resource",
       "x": 128,
       "y": 960,
       "countX": 1,
@@ -589,7 +589,7 @@
     },
     {
       "id": "icon-tech",
-      "comment": "icon for tech resource",
+      "comment": "inactive icon for tech resource",
       "x": 152,
       "y": 960,
       "countX": 1,
@@ -599,7 +599,7 @@
     },
     {
       "id": "icon-entertainment",
-      "comment": "icon for the entertainment resource",
+      "comment": "inactive icon for the entertainment resource",
       "x": 176,
       "y": 960,
       "countX": 1,
@@ -608,8 +608,8 @@
       "height": 24,
     },
     {
-      "id": "icon-population-inactive",
-      "comment": "greyed-out icon for the inactive population resource",
+      "id": "icon-population-active",
+      "comment": "icon for the active population resource",
       "x": 128,
       "y": 984,
       "countX": 1,
@@ -618,8 +618,8 @@
       "height": 24,
     },
     {
-      "id": "icon-tech-inactive",
-      "comment": "greyed-out icon for the inactive tech resource",
+      "id": "icon-tech-active",
+      "comment": "icon for the active tech resource",
       "x": 152,
       "y": 984,
       "countX": 1,
@@ -628,8 +628,8 @@
       "height": 24,
     },
     {
-      "id": "icon-entertainment-inactive",
-      "comment": "greyed-out icon for the inactive entertainment resource",
+      "id": "icon-entertainment-active",
+      "comment": "icon for the active entertainment resource",
       "x": 176,
       "y": 984,
       "countX": 1,
