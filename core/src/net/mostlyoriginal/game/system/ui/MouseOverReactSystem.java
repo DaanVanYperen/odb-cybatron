@@ -59,7 +59,7 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
                 e.tint(1f, 0f, 1f, 1f);
                 if ( !e.hasSlideable() && !e.hasCollapsible() ) {
                     hintRevealed = true;
-                    resetSystem.revealHint("Hint: If you get stuck reset (bottom right) or use a hint (bottom left).");
+                    resetSystem.revealHint("Hint: If you get stuck, press reset (bottom right) or use a hint (bottom left).");
                 }
             } else {
                 //e.tint(1f, 1f, 1f, 1f);

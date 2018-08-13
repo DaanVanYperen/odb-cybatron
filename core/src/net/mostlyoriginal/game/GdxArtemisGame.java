@@ -3,6 +3,7 @@ package net.mostlyoriginal.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.TimeUtils;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.Highscore;
 import net.mostlyoriginal.game.component.Settings;
@@ -23,6 +24,7 @@ public class GdxArtemisGame extends Game {
     public void restart() {
         G.level = G.settings.startingLevel;
         G.highscore = new Highscore();
+        G.highscore.startTime = TimeUtils.millis();
         setScreen(new GameScreen());
     }
 

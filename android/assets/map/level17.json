@@ -1,0 +1,12 @@
+{
+  "title": "Victory! Thanks for playing. :)",
+  "hint": "You have won!",
+  "width": 1,
+  "height": 1,
+  "music":"cybatron4.mp3",
+  "showHighscore": true,
+  "goals":["CHIPS"],
+  "map": [
+    [ " " ]
+  ]
+}

@@ -7,15 +7,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Json;
-import net.mostlyoriginal.api.component.basic.Pos;
-import net.mostlyoriginal.api.component.graphics.Render;
+import com.badlogic.gdx.utils.TimeUtils;
 import net.mostlyoriginal.api.component.graphics.Tint;
-import net.mostlyoriginal.api.component.ui.BitmapFontAsset;
 import net.mostlyoriginal.api.component.ui.Label;
-import net.mostlyoriginal.api.operation.JamOperationFactory;
-import net.mostlyoriginal.api.operation.OperationFactory;
-import net.mostlyoriginal.api.system.core.PassiveSystem;
-import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.component.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
@@ -54,7 +48,6 @@ public class GameScreenSetupSystem extends BaseSystem {
     protected void initialize() {
         spawnMouse();
         spawnMap("map/level" + G.level + ".json");
-        spawnResetButton();
         //spawnCar();
 //
 //        LevelData object = new LevelData();
@@ -114,18 +107,28 @@ public class GameScreenSetupSystem extends BaseSystem {
         int width = levelData.width;
         int height = levelData.height;
 
-        spawnHint(levelData.hint, G.SCREEN_CENTER_Y + height * 32f + 128);
-        spawnTitle(levelData.title, G.SCREEN_CENTER_Y + height * 32f + 64);
+        spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64, levelData.title);
+        if (levelData.showHighscore) {
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48, "Moves: " + G.highscore.moves);
+            int sraw = (int) (TimeUtils.timeSinceMillis(G.highscore.startTime) / 1000);
+            int m = sraw / 60;
+            int s = sraw % 60;
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*2, "Time spent: " + m + "m " + s + "s");
+            resetSystem.resetting=true; // this prevents auto-reset.
+        } else {
+            spawnHint(levelData.hint, G.SCREEN_CENTER_Y + height * 32f + 128);
+            spawnResetButton();
+        }
         spawnTiles(levelData, width, height);
-        spawnGoals(levelData, G.SCREEN_CENTER_Y + height * 32f);
+        spawnGoals(levelData, levelData.showHighscore ? -100 : G.SCREEN_CENTER_Y + height * 32f);
 
         assetSystem.playMusicInGame(levelData.music);
     }
 
-    private void spawnTitle(String title, float y) {
+    private void spawnTitle(float y, String label) {
         E.E()
                 .pos(G.SCREEN_CENTER_X, y)
-                .labelText(title)
+                .labelText(label)
                 .labelAlign(Label.Align.RIGHT)
                 .tint(1f, 1f, 1f, 0.5f)
                 .renderLayer(100000)
@@ -142,7 +145,7 @@ public class GameScreenSetupSystem extends BaseSystem {
 
     private void spawnHint(String title, float y) {
         if (title == null || title.isEmpty()) return;
-        resetSystem.defaultHint ="hint:" + title;
+        resetSystem.defaultHint = "hint:" + title;
         E.E()
                 .pos(G.SCREEN_CENTER_X, y)
                 .labelText(resetSystem.defaultHint)
@@ -240,7 +243,7 @@ public class GameScreenSetupSystem extends BaseSystem {
 
         String glowSprite = decorationSprite + "-glow";
         String offSprite = decorationSprite + "-inactive";
-        if ( assetSystem.get(glowSprite) != null) {
+        if (assetSystem.get(glowSprite) != null) {
             E e2 = E()
                     .attachedParent(x.id())
                     .attachedYo(65)

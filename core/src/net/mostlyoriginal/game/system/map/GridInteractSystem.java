@@ -4,6 +4,7 @@ import com.artemis.Aspect;
 import com.artemis.E;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.system.graphics.RenderBatchingSystem;
+import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.component.ui.Clicked;
 import net.mostlyoriginal.game.component.ui.Explodable;
@@ -12,7 +13,6 @@ import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.ui.ResetSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
-import net.mostlyoriginal.game.util.ScriptUtils;
 
 /**
  * @author Daan van Yperen
@@ -50,8 +50,10 @@ public class GridInteractSystem extends FluidIteratingSystem {
                 gridUpdateSystem.slideInwards(e.tileX(), e.tileY(), e.slideableX(), e.slideableY());
                 renderBatchingSystem.sortedDirty = true;
                 hasActed = true;
+                G.highscore.moves++;
             } else if (e.hasExplodable()) {
                 collapsingTileSystem.prepare(e);
+                G.highscore.moves++;
             }
             hasActed = true;
         }

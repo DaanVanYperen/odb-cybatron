@@ -23,7 +23,7 @@ public class ResetSystem extends FluidIteratingSystem {
 
     public String defaultHint;
     private EntitySubscription tileSubscription;
-    private boolean resetting = false;
+    public boolean resetting = false;
     private TransitionSystem transitionSystem;
 
     public ResetSystem() {
