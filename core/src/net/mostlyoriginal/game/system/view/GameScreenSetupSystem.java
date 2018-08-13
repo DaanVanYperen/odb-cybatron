@@ -239,11 +239,16 @@ public class GameScreenSetupSystem extends BaseSystem {
 
 
         String glowSprite = decorationSprite + "-glow";
+        String offSprite = decorationSprite + "-inactive";
         if ( assetSystem.get(glowSprite) != null) {
             E e2 = E()
                     .attachedParent(x.id())
                     .attachedYo(65)
                     .mouseGhost()
+
+                    .mouseGhostFlatIsAPoopNose(e.id())
+                    .mouseGhostPulseSpriteOn(decorationSprite)
+                    .mouseGhostPulseSpriteOff(offSprite)
                     .mouseGhostPulseEffect(true)
                     .mouseGhostPulseCause(x.id())
                     .anim(glowSprite)

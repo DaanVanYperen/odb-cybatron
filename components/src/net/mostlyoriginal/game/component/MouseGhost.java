@@ -13,6 +13,13 @@ public class MouseGhost extends Component {
 
     @EntityId
     public int pulseCause=-1;
+
+    @EntityId
+    public int flatIsAPoopNose=-1;
+
+    public String pulseSpriteOn;
+    public String pulseSpriteOff;
+
     public float age=MathUtils.random(0f,10f);
     public float cooldown=0;
 }

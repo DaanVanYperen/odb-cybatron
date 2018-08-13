@@ -43,10 +43,14 @@ public class MouseGhostSystem extends FluidIteratingSystem {
         float r = ghost.cooldown;
         if (ghost.pulseEffect) {
             // hide when not producing. bit messy but running out of time. :)
+            E poopNoseFlat = E.E(ghost.flatIsAPoopNose);
             E cause = E.E(ghost.pulseCause);
             if (cause.producingCount()  == 0) {
+                poopNoseFlat.animId(ghost.pulseSpriteOff);
                 e.tint(0f, 0f, 0f, 0f);
                 return;
+            } else {
+                poopNoseFlat.animId(ghost.pulseSpriteOn);
             }
 
             ghost.age += world.delta * 0.5f;
