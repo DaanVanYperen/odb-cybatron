@@ -232,7 +232,22 @@ public class GameScreenSetupSystem extends BaseSystem {
                 .mouseGhost()
                 .renderLayer(1)
                 .pos();
-
         assetSystem.boundToAnim(e.id(), 5, 5);
+
+
+        String glowSprite = decorationSprite + "-glow";
+        if ( assetSystem.get(glowSprite) != null) {
+            E e2 = E()
+                    .attachedParent(x.id())
+                    .attachedYo(65)
+                    .mouseGhost()
+                    .mouseGhostPulseEffect(true)
+                    .mouseGhostPulseCause(x.id())
+                    .anim(glowSprite)
+                    .renderLayer(1)
+                    .pos();
+            assetSystem.boundToAnim(e2.id(), 5, 5);
+        }
+
     }
 }

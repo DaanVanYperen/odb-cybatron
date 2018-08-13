@@ -435,7 +435,7 @@
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height":152,
+      "height":151,
     },
     {
       "id": "building-inactive",
@@ -465,7 +465,7 @@
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height":160,
+      "height":159,
     },
     {
       "id": "factory-inactive",
@@ -495,7 +495,7 @@
       "countX": 1,
       "countY": 1,
       "width": 128,
-      "height":192,
+      "height":191,
     },
     {
       "id": "casino-inactive",
