@@ -62,7 +62,7 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
                     resetSystem.revealHint("Hint: If you get stuck reset (bottom right) or use a hint (bottom left).");
                 }
             } else {
-                e.tint(1f, 1f, 1f, 1f);
+                //e.tint(1f, 1f, 1f, 1f);
                 e.tint(0.8f, 0.8f, 0.8f, 1f);
             }
         }

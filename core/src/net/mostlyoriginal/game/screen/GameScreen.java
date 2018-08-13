@@ -67,7 +67,7 @@ public class GameScreen extends WorldScreen {
 
                         new PixelCollisionService(),
                         new CameraSystem(G.CAMERA_ZOOM),
-                        new ClearScreenSystem(Color.valueOf("000022")),
+                        new ClearScreenSystem(Color.valueOf("181425")),
 
                         // call after tiles have been changed but before we act on it.
                         new GridInteractSystem(),

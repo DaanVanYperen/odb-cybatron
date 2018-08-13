@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
 import net.mostlyoriginal.game.component.G;
+import net.mostlyoriginal.game.component.Highscore;
 import net.mostlyoriginal.game.component.Settings;
 import net.mostlyoriginal.game.screen.GameScreen;
 
@@ -21,6 +22,7 @@ public class GdxArtemisGame extends Game {
 
     public void restart() {
         G.level = G.settings.startingLevel;
+        G.highscore = new Highscore();
         setScreen(new GameScreen());
     }
 

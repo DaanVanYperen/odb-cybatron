@@ -31,6 +31,8 @@ public class G {
     public static final int CELL_SIZE = 32;
 
 
+    public static Highscore highscore = new Highscore();
+
     public static final int LAYER_PLAYER = 1500;
     public static final int LAYER_PLAYER_ROBOT = 996;
     public static final int LAYER_PLAYER_ROBOT_BATTERY = 997;
