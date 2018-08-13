@@ -116,6 +116,9 @@ public class GameScreenSetupSystem extends BaseSystem {
             int m = sraw / 60;
             int s = sraw % 60;
             spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*2, "Time spent: " + m + "m " + s + "s", C, D);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*3, "Resets used: " + G.highscore.resets, C, D);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*4, "Hints used: " + G.highscore.hints, C, D);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*5, "Blocks lost: " + G.highscore.blocksLost, C, D);
             resetSystem.resetting=true; // this prevents auto-reset.
             E.E()
                     .anim("logo")
@@ -123,8 +126,8 @@ public class GameScreenSetupSystem extends BaseSystem {
                     .renderLayer(10000);
             Tint A = new Tint(0.8f, 0.8f, 0.8f, 0.4f);
             Tint B = new Tint(0.8f, 0.8f, 0.8f, 0.8f);
-            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*5, "Let us know how you did!", A, B);
-            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*6, "Please post your highscore in the game comments!", A, B);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*7, "Let us know how you did!", A, B);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*8, "Please post your highscore in the game comments!", A, B);
 
         } else {
             spawnHint(levelData.hint, G.SCREEN_CENTER_Y + height * 32f + 128);

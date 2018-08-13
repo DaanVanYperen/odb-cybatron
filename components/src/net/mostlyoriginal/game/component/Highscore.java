@@ -5,6 +5,8 @@ package net.mostlyoriginal.game.component;
  */
 public class Highscore {
     public long startTime;
-    public long moves;
-    public long level;
+    public int moves;
+    public int resets;
+    public int hints;
+    public int blocksLost;
 }

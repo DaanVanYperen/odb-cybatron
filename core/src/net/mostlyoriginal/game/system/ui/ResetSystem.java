@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.component.graphics.Tint;
 import net.mostlyoriginal.game.component.Action;
 import net.mostlyoriginal.game.component.ActionType;
+import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.Tile;
 import net.mostlyoriginal.game.screen.GameScreen;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
@@ -52,14 +53,15 @@ public class ResetSystem extends FluidIteratingSystem {
     protected void process(E e) {
         if (e.actionType() == ActionType.HINT) {
             if (e.hasClicked()) {
+                G.highscore.hints++;
                 revealHint(defaultHint);
             }
 
             e.animId(e.hasHovered() ? "hint-button-mouseover" : "hint-button");
-
         }
         if (e.actionType() == ActionType.RESET) {
             if (e.hasClicked() && !resetting) {
+                G.highscore.resets++;
                 reset(0.2f);
                 e
                         .removeClickable()

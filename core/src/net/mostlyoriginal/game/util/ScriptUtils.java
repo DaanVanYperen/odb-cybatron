@@ -4,6 +4,7 @@ import com.artemis.E;
 import com.badlogic.gdx.math.Interpolation;
 import net.mostlyoriginal.api.operation.JamOperationFactory;
 import net.mostlyoriginal.api.operation.OperationFactory;
+import net.mostlyoriginal.game.component.G;
 
 import static net.mostlyoriginal.api.utils.Duration.milliseconds;
 
@@ -28,6 +29,7 @@ public class ScriptUtils {
     }
 
     public static void collapse(E e) {
+        G.highscore.blocksLost++;
         e
                 .script(
                         OperationFactory.sequence(
