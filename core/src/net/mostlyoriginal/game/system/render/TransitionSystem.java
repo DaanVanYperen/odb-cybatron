@@ -53,7 +53,6 @@ public class TransitionSystem extends EntityProcessingSystem {
             triggered=true;
             try {
                 pixelCollisionService.releasePixmap();
-                assetSystem.stopMusic();
                 game.setScreen(ClassReflection.newInstance(E(e).transitionScreen()));
             } catch (Exception ex) {
                 throw new RuntimeException(ex);

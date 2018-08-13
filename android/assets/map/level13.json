@@ -3,7 +3,7 @@
   "hint": "The factories need to end up in a rectangle. Citizens dislike factories.",
   "width": 8,
   "height": 8,
-  "music":"cybatron1.mp3",
+  "music":"cybatron2.mp3",
   "goals":["CHIPS", "CHIPS","CHIPS", "CHIPS","CHIPS", "CHIPS","CHIPS", "CHIPS", "POPULATION","POPULATION","POPULATION", "POPULATION"],
   "map": [
     [ " ", " ", "-", "-", "-", " ", " ", " " ],

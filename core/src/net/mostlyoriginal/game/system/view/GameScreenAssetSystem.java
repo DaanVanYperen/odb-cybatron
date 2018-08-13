@@ -24,7 +24,6 @@ import static net.mostlyoriginal.game.component.G.DEBUG_NO_MUSIC;
 public class GameScreenAssetSystem extends AbstractAssetSystem {
 
     private SpriteLibrary spriteLibrary;
-    private Music music;
     public static final int TILE_SIZE = 32;
     public static final int SMALL_TILE_SIZE = 16;
     public static final int GIANT_TILE_SIZE = 48;
@@ -71,25 +70,25 @@ public class GameScreenAssetSystem extends AbstractAssetSystem {
 
     private void playMusicTitle() {
         if (DEBUG_NO_MUSIC) return;
-        if (music != null) music.stop();
-        music = Gdx.audio.newMusic(Gdx.files.internal("sfx/something1.mp3"));
-        music.setLooping(true);
-        music.play();
-        music.setPan(0, 0.1f);
+        if (G.music != null) G.music.stop();
+        G.music = Gdx.audio.newMusic(Gdx.files.internal("sfx/something1.mp3"));
+        G.music.setLooping(true);
+        G.music.play();
+        G.music.setPan(0, 0.1f);
 
     }
 
     public void playMusicInGame(String song) {
         if (DEBUG_NO_MUSIC) return;
-        if (music != null) music.stop();
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/" + song));
-        music.setLooping(true);
-        music.play();
-        music.setPan(0, 0.08f);
+        if (G.music != null) G.music.stop();
+        G.music = Gdx.audio.newMusic(Gdx.files.internal("music/" + song));
+        G.music.setLooping(true);
+        G.music.play();
+        G.music.setPan(0, 0.08f);
     }
 
     public void stopMusic() {
-        if (music != null) music.stop();
+        if (G.music != null) G.music.stop();
     }
 
     @Override

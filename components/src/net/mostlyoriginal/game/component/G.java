@@ -1,6 +1,7 @@
 package net.mostlyoriginal.game.component;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import net.mostlyoriginal.game.client.SfxHandler;
 import net.mostlyoriginal.game.client.UriHandler;
 
@@ -59,4 +60,6 @@ public class G {
         }
     };
     public static SfxHandler sfx;
+    public static String song;
+    public static Music music;
 }

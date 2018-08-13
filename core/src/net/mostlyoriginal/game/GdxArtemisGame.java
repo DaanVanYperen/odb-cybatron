@@ -25,6 +25,7 @@ public class GdxArtemisGame extends Game {
         G.level = G.settings.startingLevel;
         G.highscore = new Highscore();
         G.highscore.startTime = TimeUtils.millis();
+        G.song=null;
         setScreen(new GameScreen());
     }
 

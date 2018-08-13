@@ -3,13 +3,13 @@
   "hint": "Slide the mountains to move the buildings in place.",
   "width": 5,
   "height": 5,
-  "music":"cybatron3.mp3",
+  "music":"cybatron5.mp3",
   "goals":["POPULATION"],
   "map": [
     [ " ", " ", " ", " ", " " ],
     [ " ", " ", "M", "-", " " ],
     [ "M", " ", "M", "M", "T" ],
     [ " ", " ", "M", "F", " " ],
-    [ " ", " ", " ", " ", " " ],
+    [ " ", " ", " ", " ", " " ]
   ]
 }

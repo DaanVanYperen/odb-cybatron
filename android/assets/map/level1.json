@@ -3,7 +3,7 @@
   "hint": "Click one of the buildings to slide it towards the other.",
   "width": 3,
   "height": 3,
-  "music":"cybatron3.mp3",
+  "music":"cybatron5.mp3",
   "goals":["POPULATION"],
   "map": [
     [ "X", "X", "X" ],

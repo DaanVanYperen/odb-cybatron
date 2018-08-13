@@ -3,7 +3,7 @@
   "hint": "Move the towers clockwise.",
   "width": 7,
   "height": 7,
-  "music":"cybatron2.mp3",
+  "music":"cybatron3.mp3",
   "goals":["POPULATION","POPULATION","POPULATION", "POPULATION"],
   "map": [
     [ " ", " ", " ", " ", " ", " ", " " ],

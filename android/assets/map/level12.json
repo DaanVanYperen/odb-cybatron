@@ -3,7 +3,7 @@
   "hint": "Move the far away building closer by using the mountains smartly.",
   "width": 5,
   "height": 5,
-  "music":"cybatron5.mp3",
+  "music":"cybatron3.mp3",
   "goals":["CHIPS", "CHIPS", "POPULATION", "POPULATION"],
   "map": [
     [ "T", "-", "-","M", "~" ],

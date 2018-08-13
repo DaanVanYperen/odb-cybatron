@@ -133,7 +133,11 @@ public class GameScreenSetupSystem extends BaseSystem {
         spawnTiles(levelData, width, height);
         spawnGoals(levelData, levelData.showHighscore ? -100 : G.SCREEN_CENTER_Y + height * 32f);
 
-        assetSystem.playMusicInGame(levelData.music);
+        if ( G.song == null || !G.song.equals(levelData.music)) {
+            G.song = levelData.music;
+            assetSystem.stopMusic();
+            assetSystem.playMusicInGame(levelData.music);
+        }
     }
 
     private void spawnTitle(float y, String label, Tint tintA, Tint tintB) {

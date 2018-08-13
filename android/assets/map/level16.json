@@ -3,7 +3,7 @@
   "hint": "You can move the casino.",
   "width": 7,
   "height": 5,
-  "music":"cybatron4.mp3",
+  "music":"cybatron1redux.mp3",
   "goals":["CHIPS","CHIPS","POPULATION","POPULATION","ENTERTAINMENT"],
   "map": [
     [ " ","M","-","T","-","-","-" ],

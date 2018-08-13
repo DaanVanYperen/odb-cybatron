@@ -3,7 +3,7 @@
   "hint": "A casino needs to be bordered by two residential blocks.",
   "width": 4,
   "height": 4,
-  "music":"cybatron3.mp3",
+  "music":"cybatron2.mp3",
   "goals":["POPULATION","POPULATION","ENTERTAINMENT"],
   "map": [
     [ "M", "F", "M"," " ],
