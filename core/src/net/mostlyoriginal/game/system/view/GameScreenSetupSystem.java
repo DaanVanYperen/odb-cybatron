@@ -107,14 +107,25 @@ public class GameScreenSetupSystem extends BaseSystem {
         int width = levelData.width;
         int height = levelData.height;
 
-        spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64, levelData.title);
+        spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64, levelData.title, TITLE_TINT, Tint.WHITE);
         if (levelData.showHighscore) {
-            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48, "Moves: " + G.highscore.moves);
+            Tint C = new Tint(0.8f, 0.8f, 0.8f, 0.8f);
+            Tint D = new Tint(0.8f, 0.8f, 0.8f, 0.4f);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*1, "Moves: " + G.highscore.moves, C, D);
             int sraw = (int) (TimeUtils.timeSinceMillis(G.highscore.startTime) / 1000);
             int m = sraw / 60;
             int s = sraw % 60;
-            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*2, "Time spent: " + m + "m " + s + "s");
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*2, "Time spent: " + m + "m " + s + "s", C, D);
             resetSystem.resetting=true; // this prevents auto-reset.
+            E.E()
+                    .anim("logo")
+                    .pos(G.SCREEN_CENTER_X - 653/2 , G.SCREEN_CENTER_Y + 1 * 32f + 64 + 32)
+                    .renderLayer(10000);
+            Tint A = new Tint(0.8f, 0.8f, 0.8f, 0.4f);
+            Tint B = new Tint(0.8f, 0.8f, 0.8f, 0.8f);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*5, "Let us know how you did!", A, B);
+            spawnTitle(G.SCREEN_CENTER_Y + height * 32f + 64 - 48*6, "Please post your highscore in the game comments!", A, B);
+
         } else {
             spawnHint(levelData.hint, G.SCREEN_CENTER_Y + height * 32f + 128);
             spawnResetButton();
@@ -125,19 +136,19 @@ public class GameScreenSetupSystem extends BaseSystem {
         assetSystem.playMusicInGame(levelData.music);
     }
 
-    private void spawnTitle(float y, String label) {
+    private void spawnTitle(float y, String label, Tint tintA, Tint tintB) {
         E.E()
                 .pos(G.SCREEN_CENTER_X, y)
                 .labelText(label)
                 .labelAlign(Label.Align.RIGHT)
-                .tint(1f, 1f, 1f, 0.5f)
+                .tint(tintA.color)
                 .renderLayer(100000)
                 .script(
                         sequence(
                                 delay(seconds(0.5f)),
-                                tintBetween(TITLE_TINT, Tint.WHITE, seconds(3f), Interpolation.pow2),
+                                tintBetween(tintA, tintB, seconds(3f), Interpolation.pow2),
                                 delay(seconds(2f)),
-                                tintBetween(Tint.WHITE, TITLE_TINT, seconds(3f), Interpolation.pow2)
+                                tintBetween(tintB, tintA, seconds(3f), Interpolation.pow2)
                         )
                 )
                 .fontFontName("ail");
