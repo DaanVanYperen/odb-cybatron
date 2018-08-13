@@ -21,6 +21,7 @@ import static net.mostlyoriginal.api.utils.Duration.*;
  */
 public class ResetSystem extends FluidIteratingSystem {
 
+    public String defaultHint;
     private EntitySubscription tileSubscription;
     private boolean resetting = false;
     private TransitionSystem transitionSystem;
@@ -51,16 +52,7 @@ public class ResetSystem extends FluidIteratingSystem {
     protected void process(E e) {
         if (e.actionType() == ActionType.HINT) {
             if (e.hasClicked()) {
-                entityWithTag("hint")
-                    .renderLayer(100000)
-                        .script(
-                                sequence(
-                                        delay(seconds(0.5f)),
-                                        tintBetween(Tint.TRANSPARENT, HINT_TINT, seconds(1f), Interpolation.pow2),
-                                        delay(seconds(10f)),
-                                        tintBetween(HINT_TINT, Tint.TRANSPARENT, seconds(3f), Interpolation.pow2)
-                                )
-                        );
+                revealHint(defaultHint);
             }
 
             e.animId(e.hasHovered() ? "hint-button-mouseover" : "hint-button");
@@ -78,7 +70,7 @@ public class ResetSystem extends FluidIteratingSystem {
                                 ));
             }
 
-            if ( e.hasHovered()) {
+            if (e.hasHovered()) {
                 e.angleRotate(1);
             } else e.removeAngle();
 
@@ -86,6 +78,26 @@ public class ResetSystem extends FluidIteratingSystem {
         }
 
     }
+
+    public void revealHint(String override) {
+        E hint = entityWithTag("hint");
+        if (override != null) {
+            hint.labelText(override);
+        }
+
+        hint
+                .renderLayer(100000)
+                .script(
+                        sequence(
+                                delay(seconds(0.5f)),
+                                tintBetween(Tint.TRANSPARENT, HINT_TINT, seconds(1f), Interpolation.pow2),
+                                delay(seconds(10f)),
+                                tintBetween(HINT_TINT, Tint.TRANSPARENT, seconds(3f), Interpolation.pow2)
+                        )
+                );
+    }
+
+
 
     private void reset(float delay) {
         if (resetting == false) {

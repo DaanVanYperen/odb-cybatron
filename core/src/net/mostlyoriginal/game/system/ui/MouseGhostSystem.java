@@ -50,7 +50,7 @@ public class MouseGhostSystem extends FluidIteratingSystem {
             }
 
             ghost.age += world.delta * 0.5f;
-            r += Interpolation.pow2.apply(0.1f, 0.2f, Math.abs(1f - (ghost.age % 2f)));
+            r += Interpolation.pow2.apply(0f, 0.2f, Math.abs(1f - (ghost.age % 2f)));
         }
 
         e.tint(1f, 1f, 1f, 1f - ((r > 0.3f ? 0.3f : r) * 2));

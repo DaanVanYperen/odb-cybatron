@@ -15,6 +15,8 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
 
     private int anInt;
     private GameScreenAssetSystem assetSystem;
+    private boolean hintRevealed=false;
+    private ResetSystem resetSystem;
 
     public MouseOverReactSystem() {
         super(Aspect.all(Clickable.class, Anim.class));
@@ -55,6 +57,10 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
         if (e.hasHovered()) {
             if (e.hasClicked()) {
                 e.tint(1f, 0f, 1f, 1f);
+                if ( !e.hasSlideable() && !e.hasCollapsible() ) {
+                    hintRevealed = true;
+                    resetSystem.revealHint("Hint: If you get stuck reset (bottom right) or use a hint (bottom left).");
+                }
             } else {
                 e.tint(1f, 1f, 1f, 1f);
                 e.tint(0.8f, 0.8f, 0.8f, 1f);

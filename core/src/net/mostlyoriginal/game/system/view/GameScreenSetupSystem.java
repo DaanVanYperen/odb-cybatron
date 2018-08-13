@@ -19,6 +19,7 @@ import net.mostlyoriginal.api.utils.Duration;
 import net.mostlyoriginal.game.component.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.map.GridUpdateSystem;
+import net.mostlyoriginal.game.system.ui.ResetSystem;
 
 import static com.artemis.E.E;
 import static net.mostlyoriginal.api.operation.JamOperationFactory.*;
@@ -37,6 +38,7 @@ public class GameScreenSetupSystem extends BaseSystem {
     IsometricConversionService isometricConversionService;
 
     public float cooldown = 0;
+    private ResetSystem resetSystem;
 
 
     @Override
@@ -140,9 +142,10 @@ public class GameScreenSetupSystem extends BaseSystem {
 
     private void spawnHint(String title, float y) {
         if (title == null || title.isEmpty()) return;
+        resetSystem.defaultHint ="hint:" + title;
         E.E()
                 .pos(G.SCREEN_CENTER_X, y)
-                .labelText("hint:" + title)
+                .labelText(resetSystem.defaultHint)
                 .labelAlign(Label.Align.RIGHT)
                 .tint(1f, 0f, 1f, 0f)
                 .tag("hint")

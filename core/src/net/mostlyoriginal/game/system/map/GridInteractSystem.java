@@ -10,6 +10,7 @@ import net.mostlyoriginal.game.component.ui.Explodable;
 import net.mostlyoriginal.game.component.ui.Slideable;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
+import net.mostlyoriginal.game.system.ui.ResetSystem;
 import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 import net.mostlyoriginal.game.util.ScriptUtils;
 
@@ -25,6 +26,8 @@ public class GridInteractSystem extends FluidIteratingSystem {
     CollapsingTileSystem collapsingTileSystem;
     private GameScreenAssetSystem assetSystem;
     private MouseOverReactSystem mouseOverReactSystem;
+    private ResetSystem resetSystem;
+    private boolean hintRevealed = false;
 
 
     public GridInteractSystem() {
@@ -47,8 +50,9 @@ public class GridInteractSystem extends FluidIteratingSystem {
                 gridUpdateSystem.slideInwards(e.tileX(), e.tileY(), e.slideableX(), e.slideableY());
                 renderBatchingSystem.sortedDirty = true;
                 hasActed = true;
-            } else if (e.hasExplodable())
+            } else if (e.hasExplodable()) {
                 collapsingTileSystem.prepare(e);
+            }
             hasActed = true;
         }
 
