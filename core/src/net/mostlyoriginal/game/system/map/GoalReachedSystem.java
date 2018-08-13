@@ -6,8 +6,6 @@ import com.artemis.EntitySubscription;
 import com.artemis.utils.IntBag;
 import com.badlogic.gdx.math.MathUtils;
 import net.mostlyoriginal.api.utils.Duration;
-import net.mostlyoriginal.game.GdxArtemisGame;
-import net.mostlyoriginal.game.api.EBag;
 import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.component.Goal;
 import net.mostlyoriginal.game.component.Producing;
@@ -79,11 +77,15 @@ public class GoalReachedSystem extends FluidIteratingSystem {
                // e.goalGoalY((int)producer.posY());
                 ScriptUtils.graduallyMoveTowards(e, producer.posX() + IsometricConversionService.ISO_X - max * 10 + reservedIndex * 20, producer.posY() + 128 + 32, Duration.milliseconds(1000));
             }
+
+            e.anim(e.goalType().spriteActive);
         } else {
             goalReached = false;
             if (!e.hasScript()) {
                 ScriptUtils.graduallyMoveTowards(e, e.goalStartX(), e.goalStartY(), Duration.milliseconds(1000));
             }
+
+            e.anim(e.goalType().sprite);
         }
 
     }
