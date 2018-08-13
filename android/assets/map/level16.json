@@ -1,0 +1,15 @@
+{
+  "title": "16.  Industry and commerce.",
+  "hint": "You can't keep relying on others.",
+  "width": 7,
+  "height": 5,
+  "music":"cybatron3.mp3",
+  "goals":["CHIPS","CHIPS","POPULATION","POPULATION","ENTERTAINMENT"],
+  "map": [
+    [ " ","M","-","T","-","-","-" ],
+    [ " ","F","-","-","-","-","-" ],
+    [ "~","-","-","-","S","-","-" ],
+    [ "~","-","M","-","M","-","C" ],
+    [ "M","C","F","T","-","-","M" ]
+  ]
+}

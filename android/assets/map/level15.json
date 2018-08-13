@@ -1,0 +1,15 @@
+{
+  "title": "15.  Customers from afar.",
+  "hint": "Perhaps it's time you started doing these without help.",
+  "width": 5,
+  "height": 5,
+  "music":"cybatron3.mp3",
+  "goals":["POPULATION","POPULATION","ENTERTAINMENT"],
+  "map": [
+    [ "M", "F", "-","-","M" ],
+    [ "-", "-", "-","S","~" ],
+    [ "T", "~", "-","-","-" ],
+    [ "-", "-", "-","-","-" ],
+    [ "~", "T", "-","F","M" ]
+  ]
+}
