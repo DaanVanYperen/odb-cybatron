@@ -21,6 +21,7 @@ import net.mostlyoriginal.game.component.G;
 import net.mostlyoriginal.game.system.IsometricAttachmentSystem;
 import net.mostlyoriginal.game.system.map.*;
 import net.mostlyoriginal.game.system.IsometricConversionService;
+import net.mostlyoriginal.game.system.ui.MouseGhostSystem;
 import net.mostlyoriginal.game.system.ui.MouseOverReactSystem;
 import net.mostlyoriginal.game.system.detection.PixelCollisionService;
 import net.mostlyoriginal.game.system.render.*;
@@ -78,6 +79,8 @@ public class GameScreen extends WorldScreen {
 
                         new IsometricAttachmentSystem(),
                         new ResetSystem(),
+
+                        new MouseGhostSystem(),
 
                         renderBatchingSystem = new RenderBatchingSystem(),
                         new MyAnimRenderSystem(renderBatchingSystem),

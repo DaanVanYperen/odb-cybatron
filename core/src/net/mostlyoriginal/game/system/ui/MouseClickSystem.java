@@ -63,13 +63,16 @@ public class MouseClickSystem extends FluidIteratingSystem {
         if (cursor != null) {
             // update state based on cursor.
             final Clickable clickable = e.getClickable();
-            final boolean overlapping = system.overlaps(cursor, e.entity()) && pixelCollisionService.collides(E.E(cursor), e);
-            if (overlapping) {
-                if (topMostOverlappingLayer < e.renderLayer()) {
-                    topMostOverlapping = e;
-                    topMostOverlappingLayer = e.renderLayer();
+            boolean boundingBoxOverlap = system.overlaps(cursor, e.entity());
+            if (boundingBoxOverlap) {
+                final boolean pixelOverlap = boundingBoxOverlap && pixelCollisionService.collides(E.E(cursor), e);
+                if (pixelOverlap) {
+                    if (topMostOverlappingLayer < e.renderLayer()) {
+                        topMostOverlapping = e;
+                        topMostOverlappingLayer = e.renderLayer();
+                    }
                 }
-            }
+            };
 
             e.hovered(false);
             e.clicked(false);

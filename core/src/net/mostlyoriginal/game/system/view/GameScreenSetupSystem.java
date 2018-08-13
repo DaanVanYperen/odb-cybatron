@@ -132,14 +132,14 @@ public class GameScreenSetupSystem extends BaseSystem {
                                 delay(seconds(0.5f)),
                                 tintBetween(TITLE_TINT, Tint.WHITE, seconds(3f), Interpolation.pow2),
                                 delay(seconds(2f)),
-                                tintBetween(Tint.WHITE,TITLE_TINT, seconds(3f), Interpolation.pow2)
+                                tintBetween(Tint.WHITE, TITLE_TINT, seconds(3f), Interpolation.pow2)
                         )
                 )
                 .fontFontName("ail");
     }
 
     private void spawnHint(String title, float y) {
-        if ( title == null || title.isEmpty() ) return;
+        if (title == null || title.isEmpty()) return;
         E.E()
                 .pos(G.SCREEN_CENTER_X, y)
                 .labelText("hint:" + title)
@@ -207,7 +207,7 @@ public class GameScreenSetupSystem extends BaseSystem {
             e.foundation();
         }
 
-        if ( type == TileType.SOIL ) {
+        if (type == TileType.SOIL) {
             e.collapsible();
         }
 
@@ -224,12 +224,15 @@ public class GameScreenSetupSystem extends BaseSystem {
         }
     }
 
-    private void spawnDecoration(E e, String decorationSprite) {
-        E()
-                .attachedParent(e.id())
+    private void spawnDecoration(E x, String decorationSprite) {
+        E e = E()
+                .attachedParent(x.id())
                 .attachedYo(64)
                 .anim(decorationSprite)
+                .mouseGhost()
                 .renderLayer(1)
                 .pos();
+
+        assetSystem.boundToAnim(e.id(), 5, 5);
     }
 }
