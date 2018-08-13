@@ -6,6 +6,7 @@ import net.mostlyoriginal.api.component.graphics.Anim;
 import net.mostlyoriginal.game.component.ui.Clickable;
 import net.mostlyoriginal.game.system.IsometricConversionService;
 import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
+import net.mostlyoriginal.game.system.view.GameScreenAssetSystem;
 
 /**
  * @author Daan van Yperen
@@ -13,6 +14,7 @@ import net.mostlyoriginal.game.system.common.FluidIteratingSystem;
 public class MouseOverReactSystem extends FluidIteratingSystem {
 
     private int anInt;
+    private GameScreenAssetSystem assetSystem;
 
     public MouseOverReactSystem() {
         super(Aspect.all(Clickable.class, Anim.class));
@@ -101,15 +103,20 @@ public class MouseOverReactSystem extends FluidIteratingSystem {
     }
 
     private E createIndicator(E e, String spriteFront, int xo, int yo) {
-        return E.E()
+        E e1 = E.E()
                 .anim(spriteFront)
                 .posX(e.posX())
                 .posY(e.posY())
                 .tint(1f, 1f, 1f, 0.8f)
                 .attachedParent(e.id())
+
                 .attachedXo(xo)
                 .attachedYo(yo)
                 .renderLayer(e.renderLayer() + 1);
+
+        assetSystem.boundToAnim(e1.id(),0, 0);
+
+        return e1;
     }
 
     private boolean hasIndicator(E e, String sprite) {

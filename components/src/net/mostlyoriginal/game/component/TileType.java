@@ -10,7 +10,8 @@ public enum TileType {
     FARM('F',"soil","farm"),
     MOUNTAIN('M',"soil","mountain"),
     FACTORY('C', "soil", "factory"),
-    REINFORCED('X', "soil-indestructible", null);
+    REINFORCED('X', "soil-indestructible", null),
+    CASINO('S', "soil", "casino");
 
     public final char character;
     public final String sprite;

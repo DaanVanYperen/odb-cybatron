@@ -30,6 +30,12 @@ public class GridProductionSystem extends FluidIteratingSystem {
             e.producingCount(nearbyFarms);
         }
 
+        if (e.tileType() == TileType.CASINO) {
+            final int nearbyTowers = meta.neighboursOfType(TileType.TOWER) / 2;
+            e.producingProduct(ProductType.CASH);
+            e.producingCount(nearbyTowers);
+        }
+
         if (e.tileType() == TileType.FACTORY) {
             final int nearbyFactories = meta.neighboursOfType(TileType.FACTORY);
             e.producingProduct(ProductType.CHIPS);
