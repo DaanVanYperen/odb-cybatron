@@ -6,7 +6,7 @@ package net.mostlyoriginal.game.component;
 public enum ProductType {
     POPULATION("icon-population","icon-population-active"),
     CHIPS("icon-tech","icon-tech-active"),
-    CASH("icon-entertainment", "icon-entertainment-active");
+    ENTERTAINMENT("icon-entertainment", "icon-entertainment-active");
 
 
     public final String sprite;
